@@ -6,6 +6,7 @@ private var subscriptions = Set<AnyCancellable>()
 struct LoginView: View {
     @State var username: String = ""
     @State var password: String = ""
+    @State var isError: Bool = false
 
     var body: some View {
         VStack {
@@ -21,7 +22,11 @@ struct LoginView: View {
             .padding()
 
             Button("Login", action: login)
-        }
+        }.alert(isPresented: $isError, content: {
+                Alert(title: Text("Snorgle"),
+                    message: Text("dn fsjdfn sjnfsdjnf sjdn fjsnjfsdnjf"),
+                    dismissButton: .default(Text("OK")))
+            })
     }
 
 
