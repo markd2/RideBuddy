@@ -15,6 +15,7 @@
 		7D94EC0223CE3FFE00B00E34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D94EC0023CE3FFE00B00E34 /* LaunchScreen.storyboard */; };
 		7D94EC0D23CE3FFE00B00E34 /* RideBuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC0C23CE3FFE00B00E34 /* RideBuddyTests.swift */; };
 		7D94EC1823CE446700B00E34 /* RideJournal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC1723CE446700B00E34 /* RideJournal.swift */; };
+		7D94EC1A23CE487700B00E34 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC1923CE487700B00E34 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		7D94EC0C23CE3FFE00B00E34 /* RideBuddyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideBuddyTests.swift; sourceTree = "<group>"; };
 		7D94EC0E23CE3FFE00B00E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D94EC1723CE446700B00E34 /* RideJournal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideJournal.swift; sourceTree = "<group>"; };
+		7D94EC1923CE487700B00E34 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				7D94EC0323CE3FFE00B00E34 /* Info.plist */,
 				7D94EBFD23CE3FFE00B00E34 /* Preview Content */,
 				7D94EC1723CE446700B00E34 /* RideJournal.swift */,
+				7D94EC1923CE487700B00E34 /* LoginView.swift */,
 			);
 			path = RideBuddy;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				7D94EBF623CE3FFC00B00E34 /* AppDelegate.swift in Sources */,
 				7D94EBF823CE3FFC00B00E34 /* SceneDelegate.swift in Sources */,
 				7D94EBFA23CE3FFC00B00E34 /* ContentView.swift in Sources */,
+				7D94EC1A23CE487700B00E34 /* LoginView.swift in Sources */,
 				7D94EC1823CE446700B00E34 /* RideJournal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
