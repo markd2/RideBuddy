@@ -6,11 +6,24 @@ struct RideJournalPayload {
 }
 
 struct RideJournal {
+    private let networkQueue = DispatchQueue(label: "RideJournal",
+        qos: .default, attributes: .concurrent)
+
     func login(username: String,
-        password: String) -> AnyPublisher<RideJournalPayload, Error> {
-        return Just(RideJournalPayload())
-        .setFailureType(to: Swift.Error.self)
+//        password: String) -> AnyPublisher<RideJournalPayload, Error> {
+        password: String) -> AnyPublisher<Data, URLError> {
+
+        let url = URL(string: "https://www.cyclingfusiontrainingcenter.com/RideJournal/RJPlanner.aspx")!
+
+        let pipeline = URLSession.shared
+        .dataTaskPublisher(for: url)
+        .receive(on: networkQueue)
+        .print("snorgle")
+        .map(\.data)
         .eraseToAnyPublisher()
+
+
+        return pipeline
     }
 }
 
