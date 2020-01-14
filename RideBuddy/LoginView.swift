@@ -9,12 +9,14 @@ struct LoginView: View {
 
     var body: some View {
         VStack {
+            Text("Log in to RideJournal").padding()
+
             TextField("Username", text: $username)
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .autocapitalization(.none)
             .padding(.horizontal)
 
-            SecureField("Username", text: $password)
+            SecureField("Password", text: $password)
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .padding()
 
