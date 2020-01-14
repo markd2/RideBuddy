@@ -55,6 +55,7 @@ struct RideJournalPayload {
 
 struct RideJournalPlannedRide {
     let plannedDateString: String
+    let plannedDate: Date
     let plannedRideMinutes: Int
     let zoneTargets: [Int]
     // TODO - do the scaled zone target thing as well
@@ -74,6 +75,11 @@ struct RideJournalPlannedRide {
             throw BlahError.badDecoding("Could not decode planned zoneTarget")
         }
         self.zoneTargets = zoneTargets
+
+        guard let plannedDate = plannedDateString.rideJournalDate() else {
+            throw BlahError.badDecoding("Could not convert planned date")
+        }
+        self.plannedDate = plannedDate
     }
 }
 

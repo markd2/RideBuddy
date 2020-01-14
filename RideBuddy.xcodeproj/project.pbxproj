@@ -16,6 +16,7 @@
 		7D94EC0D23CE3FFE00B00E34 /* RideBuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC0C23CE3FFE00B00E34 /* RideBuddyTests.swift */; };
 		7D94EC1823CE446700B00E34 /* RideJournal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC1723CE446700B00E34 /* RideJournal.swift */; };
 		7D94EC1A23CE487700B00E34 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC1923CE487700B00E34 /* LoginView.swift */; };
+		7D94EC1C23CE6E5A00B00E34 /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC1B23CE6E5A00B00E34 /* DateUtilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		7D94EC0E23CE3FFE00B00E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D94EC1723CE446700B00E34 /* RideJournal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideJournal.swift; sourceTree = "<group>"; };
 		7D94EC1923CE487700B00E34 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7D94EC1B23CE6E5A00B00E34 /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				7D94EBFD23CE3FFE00B00E34 /* Preview Content */,
 				7D94EC1723CE446700B00E34 /* RideJournal.swift */,
 				7D94EC1923CE487700B00E34 /* LoginView.swift */,
+				7D94EC1B23CE6E5A00B00E34 /* DateUtilities.swift */,
 			);
 			path = RideBuddy;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D94EC1C23CE6E5A00B00E34 /* DateUtilities.swift in Sources */,
 				7D94EBF623CE3FFC00B00E34 /* AppDelegate.swift in Sources */,
 				7D94EBF823CE3FFC00B00E34 /* SceneDelegate.swift in Sources */,
 				7D94EBFA23CE3FFC00B00E34 /* ContentView.swift in Sources */,
