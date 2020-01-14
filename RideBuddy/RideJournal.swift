@@ -5,10 +5,34 @@ struct RideJournalPayload {
     let flurbage = "Grongweezle"
 
     init(webPayload payload: WebRideJournalPayload) {
+        print("whoa - \(payload)")
     }
 }
 
 struct WebRideJournalPayload: Codable {
+    let d: WebRideJournalPayloadUsefulBits?
+}
+
+struct WebRideJournalPayloadUsefulBits: Codable {
+    let errorCode: Int?
+    let heartZones: [Int]?
+    let threshold: Int?
+    let type: String?  // e.g. Download:http://www.RideBuddycom/Data/
+    let userType: String? // e.g. Rider
+    let username: String?
+    let version: String?  // e.g. 1.0
+    let weight: Int?      // e.g. 250 :'-(
+
+    private enum CodingKeys: String, CodingKey {
+        case errorCode = "ErrorCode"
+        case heartZones
+        case threshold
+        case type = "__type"
+        case userType
+        case username = "userName"
+        case version
+        case weight
+    }
 }
 
 struct RideJournal {
