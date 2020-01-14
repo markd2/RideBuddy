@@ -1,16 +1,88 @@
 import Foundation
 import Combine
 
+enum BlahError: Error {
+    case unknown
+    case badDecoding(String) // explanatory text
+}
+
 struct RideJournalPayload {
     let flurbage = "Grongweezle"
 
-    init(webPayload payload: WebRideJournalPayload) {
-        print("whoa - \(payload)")
+    let heartZones: [Int]
+    let threshold: Int
+    let userType: String?
+    let username: String
+    let weight: Int?      // e.g. 250 :'-(
+    let plannedRides: [RideJournalPlannedRide]
+
+    init(webPayload wrapper: WebRideJournalPayload) throws {
+        guard let payload = wrapper.usefulBits else {
+            throw BlahError.badDecoding("Could not decode ride journal payload")
+        }
+
+        guard let heartZones = payload.heartZones else {
+            throw BlahError.badDecoding("Could not decode heart zones")
+        }
+        self.heartZones = heartZones
+
+        guard let threshold = payload.threshold else {
+            throw BlahError.badDecoding("Could not decode threshold")
+        }
+        self.threshold = threshold
+
+        guard let userType = payload.userType else {
+            throw BlahError.badDecoding("Could not decode userType")
+        }
+        self.userType = userType
+
+        guard let username = payload.username else {
+            throw BlahError.badDecoding("Could not decode username")
+        }
+        self.username = username
+
+        guard let weight = payload.weight else {
+            throw BlahError.badDecoding("Could not decode weight")
+        }
+        self.weight = weight
+
+        guard let plannedRides = payload.plannedRides else {
+            throw BlahError.badDecoding("Could not decode plannedRides")
+        }
+        self.plannedRides = try plannedRides.map(RideJournalPlannedRide.init(webPlannedRide:))
+    }
+}
+
+struct RideJournalPlannedRide {
+    let plannedDateString: String
+    let plannedRideMinutes: Int
+    let zoneTargets: [Int]
+    // TODO - do the scaled zone target thing as well
+
+    init(webPlannedRide planned: WebRideJournalPayloadUsefulBits.WebPlannedRide) throws {
+        guard let plannedDateString = planned.plannedDate else {
+            throw BlahError.badDecoding("Could not decode planned date")
+        }
+        self.plannedDateString = plannedDateString
+
+        guard let plannedRideMinutes = planned.plannedRideMinutes else {
+            throw BlahError.badDecoding("Could not decode planned ride minutes")
+        }
+        self.plannedRideMinutes = plannedRideMinutes
+
+        guard let zoneTargets = planned.zoneTargets else {
+            throw BlahError.badDecoding("Could not decode planned zoneTarget")
+        }
+        self.zoneTargets = zoneTargets
     }
 }
 
 struct WebRideJournalPayload: Codable {
-    let d: WebRideJournalPayloadUsefulBits?
+    let usefulBits: WebRideJournalPayloadUsefulBits?
+
+    private enum CodingKeys: String, CodingKey {
+        case usefulBits = "d"  // .net-ism
+    }
 }
 
 struct WebRideJournalPayloadUsefulBits: Codable {
@@ -22,10 +94,12 @@ struct WebRideJournalPayloadUsefulBits: Codable {
     let username: String?
     let version: String?  // e.g. 1.0
     let weight: Int?      // e.g. 250 :'-(
+    let plannedRides: [WebPlannedRide]?
 
     private enum CodingKeys: String, CodingKey {
         case errorCode = "ErrorCode"
         case heartZones
+        case plannedRides
         case threshold
         case type = "__type"
         case userType
@@ -33,7 +107,16 @@ struct WebRideJournalPayloadUsefulBits: Codable {
         case version
         case weight
     }
+
+    struct WebPlannedRide: Codable {
+        let burnRate: [Double]?  // unused - for calorie calculation I think
+        let plannedDate: String?
+        let plannedRideMinutes: Int?
+        let zoneTargets: [Int]?
+    }
 }
+
+
 
 struct RideJournal {
     private let networkQueue = DispatchQueue(label: "RideJournal",
@@ -90,8 +173,8 @@ struct RideJournal {
             return data
         }
         .decode(type: WebRideJournalPayload.self, decoder: decoder)
-        .map { webPayload in
-            RideJournalPayload(webPayload: webPayload)
+        .tryMap { webPayload in
+            try RideJournalPayload(webPayload: webPayload)
         }
         .eraseToAnyPublisher()
 
