@@ -1,4 +1,7 @@
 import SwiftUI
+import Combine
+
+private var subscriptions = Set<AnyCancellable>()
 
 struct LoginView: View {
     @State var username: String = ""
@@ -19,7 +22,12 @@ struct LoginView: View {
         }
     }
 
+
+
     private func login() {
-        print("Snorgle")
+        RideJournal().login(username: username, password: password)
+        .sink(receiveCompletion: { print("completed login: \($0)") },
+            receiveValue: { print("received login \($0)") })
+        .store(in: &subscriptions)
     }
 }

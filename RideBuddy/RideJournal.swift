@@ -2,6 +2,7 @@ import Foundation
 import Combine
 
 struct RideJournalPayload {
+    let flurbage = "Grongweezle"
 }
 
 struct RideJournal {
