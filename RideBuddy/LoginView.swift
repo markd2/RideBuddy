@@ -6,7 +6,9 @@ private var subscriptions = Set<AnyCancellable>()
 struct LoginView: View {
     @State var username: String = ""
     @State var password: String = ""
+
     @State var isError: Bool = false
+    @State var errorText: String = ""
 
     var body: some View {
         VStack {
@@ -24,7 +26,7 @@ struct LoginView: View {
             Button("Login", action: login)
         }.alert(isPresented: $isError, content: {
                 Alert(title: Text("Snorgle"),
-                    message: Text("dn fsjdfn sjnfsdjnf sjdn fjsnjfsdnjf"),
+                    message: Text(errorText),
                     dismissButton: .default(Text("OK")))
             })
     }
@@ -33,8 +35,18 @@ struct LoginView: View {
 
     private func login() {
         RideJournal().login(username: username, password: password)
-        .sink(receiveCompletion: { print("completed login: \($0)") },
-            receiveValue: { print("received login \($0)") })
+        .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.isError = true
+                    self.errorText = error.localizedDescription
+                }
+            },
+            receiveValue: {
+                print("received login \($0)")
+            })
         .store(in: &subscriptions)
     }
 }
