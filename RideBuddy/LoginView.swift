@@ -40,8 +40,28 @@ struct LoginView: View {
                 case .finished:
                     break
                 case .failure(let error):
-                    self.isError = true
-                    self.errorText = error.localizedDescription
+                    if let blahError = error as? BlahError {
+                        self.isError = true
+
+                        switch blahError {
+                        case .badDecoding(let complaint):
+                            self.errorText = complaint
+
+                        case .rideJournalError(let errorCode):
+                            if errorCode == .invalidLogin {
+                                self.errorText = "Could not log in. Double-check your username and password."
+                            } else {
+                                self.errorText = "Error from Ride Journal: \(errorCode.rawValue)"
+                            }
+
+                        case .unknown:
+                            self.errorText = "Something went wrong but I don't know what it was :-("
+                        }
+
+                    } else {
+                        self.isError = true
+                        self.errorText = error.localizedDescription
+                    }
                 }
             },
             receiveValue: {

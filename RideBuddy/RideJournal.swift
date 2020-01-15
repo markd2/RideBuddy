@@ -4,6 +4,28 @@ import Combine
 enum BlahError: Error {
     case unknown
     case badDecoding(String) // explanatory text
+    case rideJournalError(RideJournalErrorCode)
+}
+
+enum RideJournalErrorCode: Int {
+    // Upload results, client-side
+    case resultExceptionPassthrough = -9   // .Net exception leaked through to RideBuddy
+    case copyPathError = -8         
+    case removePathError = -7
+    
+    // Download resuls client-side
+    case commError = -6
+    case noResultCode = -5
+    case versionMismatch = -4
+    case noEnvelope = -3
+    case noDataSent = -2
+    case unknown = -1
+    
+    // Server-side results
+    case success = 0
+    case invalidLogin = 1
+    case exception = 2
+    case databaseInsertError = 3
 }
 
 struct RideJournalPayload {
@@ -20,6 +42,19 @@ struct RideJournalPayload {
         guard let payload = wrapper.usefulBits else {
             throw BlahError.badDecoding("Could not decode ride journal payload")
         }
+        guard let errorCodeNumber = payload.errorCode else {
+            throw BlahError.badDecoding("Could not decode ride journal error code")
+        }
+
+
+        guard let errorCode = RideJournalErrorCode(rawValue: errorCodeNumber) else {
+            throw BlahError.badDecoding("Unexpected ride journal error code \(errorCodeNumber)")
+        }
+
+        if errorCode != .success {
+            throw BlahError.rideJournalError(errorCode)
+        }
+
 
         guard let heartZones = payload.heartZones else {
             throw BlahError.badDecoding("Could not decode heart zones")
