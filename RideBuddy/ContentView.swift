@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.bluetoothAccess) var bluetoothAccess: BlueToothAccess
+
     var body: some View {
         TabView {
             LoginView().tabItem {
