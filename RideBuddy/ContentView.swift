@@ -6,17 +6,27 @@ class HeartRateThunk: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
 
     @Published var heartRate: String = "---"
+    @Published var batteryLevel: String = "---"
 
     init(bluetoothAccess: BlueToothAccess? = nil) {
         guard let bluetoothAccess = bluetoothAccess else {
             return
         }
+
         bluetoothAccess.heartRatePublisher
         .receive(on: RunLoop.main)
         .map {
             return String($0)
         }
         .assign(to: \.heartRate, on: self)
+        .store(in: &subscriptions)
+
+        bluetoothAccess.batteryLevelPublisher
+        .receive(on: RunLoop.main)
+        .map {
+            return String(Int($0 * 100))
+        }
+        .assign(to: \.batteryLevel, on: self)
         .store(in: &subscriptions)
     }
 }
@@ -31,7 +41,10 @@ struct ContentView: View {
     }
 
     var body: some View {
-        Text(thunk.heartRate).font(.title)
+        VStack {
+            Text("Heart rate - \(thunk.heartRate)").font(.title)
+            Text("Battery level - \(thunk.batteryLevel)%").font(.title)
+        }
     }
 }
 
