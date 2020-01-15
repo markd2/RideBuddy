@@ -37,6 +37,7 @@ struct ContentView: View {
     @ObservedObject var thunk: HeartRateThunk = HeartRateThunk()
 
     @Environment(\.bluetoothAccess) var bluetoothAccess: BlueToothAccess
+    @Environment(\.defaultMeters) var defaultMeters: DefaultMeters
 
     var heartRateMeterSource : MeterSource?
     var heartRateMeterSource2x : MeterSource?
@@ -45,36 +46,14 @@ struct ContentView: View {
     init() {
 //        thunk = HeartRateThunk(bluetoothAccess: bluetoothAccess)
 
-        heartRateMeterSource = MeterSource(name: "Heart Rate",
-            dataSource: bluetoothAccess.heartRatePublisher
-            .receive(on: RunLoop.main)
-            .map {
-                return String($0)
-            }.eraseToAnyPublisher())
-
-        heartRateMeterSource2x = MeterSource(name: "Heart Rate 2x",
-            dataSource: bluetoothAccess.heartRatePublisher
-            .receive(on: RunLoop.main)
-            .map {
-                return String($0 * 2)
-            }.eraseToAnyPublisher())
-
-        batteryLevelMeterSource = MeterSource(name: "Battery Level",
-            dataSource: bluetoothAccess.batteryLevelPublisher
-            .receive(on: RunLoop.main)
-            .map {
-                return String($0 * 100) + "%"
-            }.eraseToAnyPublisher())
     }
 
     var body: some View {
         VStack {
-            Text("Heart rate - \(thunk.heartRate)").font(.title)
-//            Text("Battery level - \(thunk.batteryLevel)%").font(.title)
-            MeterView(meterSource: heartRateMeterSource!).padding()
-            MeterView(meterSource: heartRateMeterSource2x!).padding()
-            MeterView(meterSource: heartRateMeterSource!).padding()
-            MeterView(meterSource: batteryLevelMeterSource!).padding()
+            MeterView(meterSource: defaultMeters.heartRateMeterSource).padding()
+            MeterView(meterSource: defaultMeters.heartRateMeterSource2x).padding()
+            MeterView(meterSource: defaultMeters.heartRateMeterSource).padding()
+            MeterView(meterSource: defaultMeters.batteryLevelMeterSource).padding()
         }
     }
 }

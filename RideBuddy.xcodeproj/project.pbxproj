@@ -22,6 +22,7 @@
 		7D94EC5423CF734D00B00E34 /* DataUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC5323CF734D00B00E34 /* DataUtilities.swift */; };
 		7D94EC5823CFAE6F00B00E34 /* sample-rates.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7D94EC5723CFAE6C00B00E34 /* sample-rates.csv */; };
 		7D94EC5A23CFB4D300B00E34 /* Meter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC5923CFB4D300B00E34 /* Meter.swift */; };
+		7D94EC5C23CFBDDB00B00E34 /* DefaultMeters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC5B23CFBDDB00B00E34 /* DefaultMeters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		7D94EC5323CF734D00B00E34 /* DataUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUtilities.swift; sourceTree = "<group>"; };
 		7D94EC5723CFAE6C00B00E34 /* sample-rates.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = "sample-rates.csv"; sourceTree = "<group>"; };
 		7D94EC5923CFB4D300B00E34 /* Meter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meter.swift; sourceTree = "<group>"; };
+		7D94EC5B23CFBDDB00B00E34 /* DefaultMeters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMeters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				7D94EC5323CF734D00B00E34 /* DataUtilities.swift */,
 				7D94EC5723CFAE6C00B00E34 /* sample-rates.csv */,
 				7D94EC5923CFB4D300B00E34 /* Meter.swift */,
+				7D94EC5B23CFBDDB00B00E34 /* DefaultMeters.swift */,
 			);
 			path = RideBuddy;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				7D94EC1C23CE6E5A00B00E34 /* DateUtilities.swift in Sources */,
 				7D94EBF623CE3FFC00B00E34 /* AppDelegate.swift in Sources */,
 				7D94EC4F23CF70BA00B00E34 /* BlueTooth.swift in Sources */,
+				7D94EC5C23CFBDDB00B00E34 /* DefaultMeters.swift in Sources */,
 				7D94EC5A23CFB4D300B00E34 /* Meter.swift in Sources */,
 				7D94EBF823CE3FFC00B00E34 /* SceneDelegate.swift in Sources */,
 				7D94EC5423CF734D00B00E34 /* DataUtilities.swift in Sources */,
