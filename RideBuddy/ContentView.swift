@@ -1,49 +1,30 @@
 import SwiftUI
-import Combine
-
-
-class HeartRateThunk: ObservableObject {
-    private var subscriptions = Set<AnyCancellable>()
-
-    @Published var heartRate: String = "---"
-    @Published var batteryLevel: String = "---"
-
-    init(bluetoothAccess: BlueToothAccess? = nil) {
-        guard let bluetoothAccess = bluetoothAccess else {
-            return
-        }
-
-        bluetoothAccess.heartRatePublisher
-        .receive(on: RunLoop.main)
-        .map {
-            return String($0)
-        }
-        .assign(to: \.heartRate, on: self)
-        .store(in: &subscriptions)
-
-        bluetoothAccess.batteryLevelPublisher
-        .receive(on: RunLoop.main)
-        .map {
-            return String(Int($0 * 100))
-        }
-        .assign(to: \.batteryLevel, on: self)
-        .store(in: &subscriptions)
-    }
-}
 
 struct ContentView: View {
-    @ObservedObject var thunk: HeartRateThunk = HeartRateThunk()
-
-    @Environment(\.bluetoothAccess) var bluetoothAccess: BlueToothAccess
-
-    init() {
-        thunk = HeartRateThunk(bluetoothAccess: bluetoothAccess)
-    }
+    @Environment(\.defaultMeters) var defaultMeters: DefaultMeterSources
 
     var body: some View {
-        VStack {
-            Text("Heart rate - \(thunk.heartRate)").font(.title)
-            Text("Battery level - \(thunk.batteryLevel)%").font(.title)
+        TabView {
+
+            LoginView().tabItem {
+                VStack {
+                    Text("All Meters")
+                    Image(systemName: "desktopcomputer")
+                }
+            }
+
+            VStack {
+                ForEach(0 ..< defaultMeters.allTheThings.count) { index in
+                    MeterView(meterSource: self.defaultMeters.allTheThings[index])
+                }
+            }.tabItem {
+                VStack {
+                    Text("All Meters")
+                    Image(systemName: "speedometer")
+                }
+            }
+
+            
         }
     }
 }
@@ -51,39 +32,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-    }
-}
-
-
-
-extension ContentView {
-    /// Append an int value and timestamp (seconds since 1970) to a log file.
-    /// It's not O_APPEND, instead seekToEndOfFile :-(  So don't even think of 
-    /// using in a threaded context.
-    ///
-    /// not used by anybody, but useful to stick in a heart rate subscriber to
-    /// capture readings for later playback.
-    func writeValue(_ value: Int) {
-        let string = "\(value),\(Int(Date().timeIntervalSince1970))\n"
-        print("appending \(string)")
-        
-        let dir: URL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory,
-                                                in: FileManager.SearchPathDomainMask.userDomainMask).first!
-        let fileurl =  dir.appendingPathComponent("log.txt")
-        
-        do {
-            if FileManager.default.fileExists(atPath: fileurl.path) {
-                let fileHandle = try FileHandle(forUpdating: fileurl)
-                fileHandle.seekToEndOfFile() // :'-(
-                fileHandle.write(string.data(using: .utf8)!)
-                fileHandle.closeFile()
-            } else {
-                if let data = string.data(using: .utf8) {
-                    try? data.write(to: fileurl, options: .atomicWrite)
-                }
-            }
-        } catch {
-            print("Error writing to file \(error)")
-        }
     }
 }

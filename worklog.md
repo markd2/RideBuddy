@@ -449,3 +449,37 @@ struct ContentView: View {
 }
 ```
 
+----------
+
+Took a nice walk up to the HBM gate, and captured heart rates. (yay iexploder)
+
+for now, let's make two meters that subscribe to the heart rate.
+
+also add the battery level.
+
+----------
+
+next up, add some meters to watch things
+
+have a meter source that can feed MeterViews
+
+meter source has a title, and a combine publisher that vends a string.
+
+The meter is pretty dumb - show this title, accept this string.
+
+Can choose meters from a collection of MeterSources.
+
+----------
+
+Now for some reorganizing.
+
+Thinking can move the bluetooth ting out of the environemnt, and instead
+publish a collection of MeterSources.
+
+yep - that worked out nicely.  DefaultMeters has them for now.
+
+
+
+
+
+
