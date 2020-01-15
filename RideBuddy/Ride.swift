@@ -6,7 +6,8 @@ class Ride {
     let sources: DefaultMeterSources
     let bluetoothAccess: BlueToothAccess
 
-    @State private(set) var sixUp: [MeterSource]
+    @State var sixUp: [MeterSource]
+    @State var allTheMeters: [MeterSource]
 
     init() {
         bluetoothAccess = BlueToothAccess()
@@ -16,6 +17,10 @@ class Ride {
             sources.heartRateMeterSource2x,
             sources.heartRateMeterSource2x,
             sources.heartRateMeterSource,
+            sources.batteryLevelMeterSource]
+        
+        allTheMeters = [sources.heartRateMeterSource,
+            sources.heartRateMeterSource2x,
             sources.batteryLevelMeterSource]
     }
 }

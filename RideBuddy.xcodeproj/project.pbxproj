@@ -26,6 +26,7 @@
 		7D94EC5E23CFC0F200B00E34 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC5D23CFC0F200B00E34 /* Utilities.swift */; };
 		7D94EC6023CFC7CC00B00E34 /* SixUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC5F23CFC7CC00B00E34 /* SixUpView.swift */; };
 		7D94EC6223CFCD3300B00E34 /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC6123CFCD3300B00E34 /* Ride.swift */; };
+		7D94EC6423CFD50300B00E34 /* MeterChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC6323CFD50300B00E34 /* MeterChooser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		7D94EC5D23CFC0F200B00E34 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		7D94EC5F23CFC7CC00B00E34 /* SixUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SixUpView.swift; sourceTree = "<group>"; };
 		7D94EC6123CFCD3300B00E34 /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
+		7D94EC6323CFD50300B00E34 /* MeterChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterChooser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				7D94EC5B23CFBDDB00B00E34 /* DefaultMeterSources.swift */,
 				7D94EC5F23CFC7CC00B00E34 /* SixUpView.swift */,
 				7D94EC6123CFCD3300B00E34 /* Ride.swift */,
+				7D94EC6323CFD50300B00E34 /* MeterChooser.swift */,
 			);
 			path = RideBuddy;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				7D94EC5C23CFBDDB00B00E34 /* DefaultMeterSources.swift in Sources */,
 				7D94EC6223CFCD3300B00E34 /* Ride.swift in Sources */,
 				7D94EC5A23CFB4D300B00E34 /* Meter.swift in Sources */,
+				7D94EC6423CFD50300B00E34 /* MeterChooser.swift in Sources */,
 				7D94EC6023CFC7CC00B00E34 /* SixUpView.swift in Sources */,
 				7D94EBF823CE3FFC00B00E34 /* SceneDelegate.swift in Sources */,
 				7D94EC5423CF734D00B00E34 /* DataUtilities.swift in Sources */,

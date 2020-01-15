@@ -15,7 +15,7 @@ struct ContentView: View {
                 }
             }
 
-            SixUpView(meterSources: ride.$sixUp).tabItem {
+            SixUpView(meterSources: ride.$sixUp, allTheMeters: ride.$allTheMeters).tabItem {
                 VStack {
                     Text("Six-Up")
                     Image(systemName: "leaf.arrow.circlepath")
