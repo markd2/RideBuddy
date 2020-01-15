@@ -20,6 +20,7 @@
 		7D94EC4F23CF70BA00B00E34 /* BlueTooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC4E23CF70BA00B00E34 /* BlueTooth.swift */; };
 		7D94EC5223CF711800B00E34 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D94EC5123CF711800B00E34 /* CoreBluetooth.framework */; };
 		7D94EC5423CF734D00B00E34 /* DataUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC5323CF734D00B00E34 /* DataUtilities.swift */; };
+		7D94EC5823CFAE6F00B00E34 /* sample-rates.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7D94EC5723CFAE6C00B00E34 /* sample-rates.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		7D94EC4E23CF70BA00B00E34 /* BlueTooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueTooth.swift; sourceTree = "<group>"; };
 		7D94EC5123CF711800B00E34 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		7D94EC5323CF734D00B00E34 /* DataUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUtilities.swift; sourceTree = "<group>"; };
+		7D94EC5723CFAE6C00B00E34 /* sample-rates.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = "sample-rates.csv"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				7D94EC1B23CE6E5A00B00E34 /* DateUtilities.swift */,
 				7D94EC4E23CF70BA00B00E34 /* BlueTooth.swift */,
 				7D94EC5323CF734D00B00E34 /* DataUtilities.swift */,
+				7D94EC5723CFAE6C00B00E34 /* sample-rates.csv */,
 			);
 			path = RideBuddy;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D94EC5823CFAE6F00B00E34 /* sample-rates.csv in Resources */,
 				7D94EC0223CE3FFE00B00E34 /* LaunchScreen.storyboard in Resources */,
 				7D94EBFF23CE3FFE00B00E34 /* Preview Assets.xcassets in Resources */,
 				7D94EBFC23CE3FFE00B00E34 /* Assets.xcassets in Resources */,
