@@ -1,5 +1,7 @@
 import SwiftUI
 
+let ride = Ride()
+
 struct ContentView: View {
     @Environment(\.defaultMeters) var defaultMeters: DefaultMeterSources
 
@@ -13,18 +15,12 @@ struct ContentView: View {
                 }
             }
 
-            VStack {
-                ForEach(0 ..< defaultMeters.allTheThings.count) { index in
-                    MeterView(meterSource: self.defaultMeters.allTheThings[index])
-                }
-            }.tabItem {
+            SixUpView(meterSources: ride.$sixUp).tabItem {
                 VStack {
-                    Text("All Meters")
-                    Image(systemName: "speedometer")
+                    Text("Six-Up")
+                    Image(systemName: "leaf.arrow.circlepath")
                 }
             }
-
-            
         }
     }
 }

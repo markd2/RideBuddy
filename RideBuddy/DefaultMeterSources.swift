@@ -35,12 +35,7 @@ class DefaultMeterSources {
     init(_ bluetoothAccess: BlueToothAccess) {
         self.bluetoothAccess = bluetoothAccess
     }
-
-    lazy var allTheThings: [MeterSource] = {
-        [heartRateMeterSource, heartRateMeterSource2x, batteryLevelMeterSource]
-    }()
 }
-
 
 struct DefaultMetersKey: EnvironmentKey {
     static let defaultValue: DefaultMeterSources = DefaultMeterSources(BlueToothAccess())
