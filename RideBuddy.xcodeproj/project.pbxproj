@@ -23,6 +23,7 @@
 		7D94EC5823CFAE6F00B00E34 /* sample-rates.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7D94EC5723CFAE6C00B00E34 /* sample-rates.csv */; };
 		7D94EC5A23CFB4D300B00E34 /* Meter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC5923CFB4D300B00E34 /* Meter.swift */; };
 		7D94EC5C23CFBDDB00B00E34 /* DefaultMeters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC5B23CFBDDB00B00E34 /* DefaultMeters.swift */; };
+		7D94EC5E23CFC0F200B00E34 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC5D23CFC0F200B00E34 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		7D94EC5723CFAE6C00B00E34 /* sample-rates.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = "sample-rates.csv"; sourceTree = "<group>"; };
 		7D94EC5923CFB4D300B00E34 /* Meter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meter.swift; sourceTree = "<group>"; };
 		7D94EC5B23CFBDDB00B00E34 /* DefaultMeters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMeters.swift; sourceTree = "<group>"; };
+		7D94EC5D23CFC0F200B00E34 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		7D94EBF423CE3FFC00B00E34 /* RideBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				7D94EC5D23CFC0F200B00E34 /* Utilities.swift */,
 				7D94EBF523CE3FFC00B00E34 /* AppDelegate.swift */,
 				7D94EBF723CE3FFC00B00E34 /* SceneDelegate.swift */,
 				7D94EBF923CE3FFC00B00E34 /* ContentView.swift */,
@@ -247,6 +250,7 @@
 			files = (
 				7D94EC1C23CE6E5A00B00E34 /* DateUtilities.swift in Sources */,
 				7D94EBF623CE3FFC00B00E34 /* AppDelegate.swift in Sources */,
+				7D94EC5E23CFC0F200B00E34 /* Utilities.swift in Sources */,
 				7D94EC4F23CF70BA00B00E34 /* BlueTooth.swift in Sources */,
 				7D94EC5C23CFBDDB00B00E34 /* DefaultMeters.swift in Sources */,
 				7D94EC5A23CFB4D300B00E34 /* Meter.swift in Sources */,
