@@ -11,6 +11,7 @@ class BlueToothAccess: NSObject {
     var heartRatePeripheral: CBPeripheral!
 
     let heartRatePublisher = PassthroughSubject<Int, Never>()
+    let batteryLevelPublisher = PassthroughSubject<Double, Never>()
 
     override init() {
         super.init()
@@ -108,8 +109,10 @@ extension BlueToothAccess: CBPeripheralDelegate {
         switch characteristic.uuid {
         case batteryLevelCharacteristicCBUUID:
             print("battery has value", characteristic.value?.hexDescription ?? "no value")
-            let charge = batteryLevel(from: characteristic)
-            print("charge \(charge)")
+            if let charge = batteryLevel(from: characteristic) {
+                print("charge \(charge)")
+                batteryLevelPublisher.send(charge)
+            }
         case heartRateMeasurementCharacteristicCBUUID:
             guard let bpm = heartRate(from: characteristic) else {
                 break
@@ -117,7 +120,7 @@ extension BlueToothAccess: CBPeripheralDelegate {
             print("lub-dub \(bpm)")
             heartRatePublisher.send(bpm)
         default:
-            print("unhandled uuid \(characteristic.uuid) has value \(characteristic.value?.hexDescription)")
+            print("unhandled uuid \(characteristic.uuid) has value \(characteristic.value?.hexDescription ?? "---")")
 
         }
     }

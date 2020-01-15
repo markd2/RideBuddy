@@ -205,12 +205,9 @@ struct RideJournal {
         let pipeline = session
         .dataTaskPublisher(for: request)
         .receive(on: networkQueue)
-        .print()
         .map(\.data)
-        .print("snorgle")
         .map { data in
             let string = String(data: data, encoding: .utf8)
-            print("SNORGLE ", string)
             return data
         }
         .decode(type: WebRideJournalPayload.self, decoder: decoder)
