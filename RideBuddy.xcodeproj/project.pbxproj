@@ -17,6 +17,9 @@
 		7D94EC1823CE446700B00E34 /* RideJournal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC1723CE446700B00E34 /* RideJournal.swift */; };
 		7D94EC1A23CE487700B00E34 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC1923CE487700B00E34 /* LoginView.swift */; };
 		7D94EC1C23CE6E5A00B00E34 /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC1B23CE6E5A00B00E34 /* DateUtilities.swift */; };
+		7D94EC4F23CF70BA00B00E34 /* BlueTooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC4E23CF70BA00B00E34 /* BlueTooth.swift */; };
+		7D94EC5223CF711800B00E34 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D94EC5123CF711800B00E34 /* CoreBluetooth.framework */; };
+		7D94EC5423CF734D00B00E34 /* DataUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC5323CF734D00B00E34 /* DataUtilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		7D94EC1723CE446700B00E34 /* RideJournal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideJournal.swift; sourceTree = "<group>"; };
 		7D94EC1923CE487700B00E34 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7D94EC1B23CE6E5A00B00E34 /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
+		7D94EC4E23CF70BA00B00E34 /* BlueTooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueTooth.swift; sourceTree = "<group>"; };
+		7D94EC5123CF711800B00E34 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		7D94EC5323CF734D00B00E34 /* DataUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUtilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D94EC5223CF711800B00E34 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +77,7 @@
 				7D94EBF423CE3FFC00B00E34 /* RideBuddy */,
 				7D94EC0B23CE3FFE00B00E34 /* RideBuddyTests */,
 				7D94EBF323CE3FFC00B00E34 /* Products */,
+				7D94EC5023CF711800B00E34 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,6 +103,8 @@
 				7D94EC1723CE446700B00E34 /* RideJournal.swift */,
 				7D94EC1923CE487700B00E34 /* LoginView.swift */,
 				7D94EC1B23CE6E5A00B00E34 /* DateUtilities.swift */,
+				7D94EC4E23CF70BA00B00E34 /* BlueTooth.swift */,
+				7D94EC5323CF734D00B00E34 /* DataUtilities.swift */,
 			);
 			path = RideBuddy;
 			sourceTree = "<group>";
@@ -114,6 +124,14 @@
 				7D94EC0E23CE3FFE00B00E34 /* Info.plist */,
 			);
 			path = RideBuddyTests;
+			sourceTree = "<group>";
+		};
+		7D94EC5023CF711800B00E34 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D94EC5123CF711800B00E34 /* CoreBluetooth.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,7 +237,9 @@
 			files = (
 				7D94EC1C23CE6E5A00B00E34 /* DateUtilities.swift in Sources */,
 				7D94EBF623CE3FFC00B00E34 /* AppDelegate.swift in Sources */,
+				7D94EC4F23CF70BA00B00E34 /* BlueTooth.swift in Sources */,
 				7D94EBF823CE3FFC00B00E34 /* SceneDelegate.swift in Sources */,
+				7D94EC5423CF734D00B00E34 /* DataUtilities.swift in Sources */,
 				7D94EBFA23CE3FFC00B00E34 /* ContentView.swift in Sources */,
 				7D94EC1A23CE487700B00E34 /* LoginView.swift in Sources */,
 				7D94EC1823CE446700B00E34 /* RideJournal.swift in Sources */,
@@ -379,6 +399,7 @@
 				DEVELOPMENT_TEAM = PZUW886A3X;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RideBuddy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -399,6 +420,7 @@
 				DEVELOPMENT_TEAM = PZUW886A3X;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RideBuddy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
