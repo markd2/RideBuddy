@@ -403,3 +403,49 @@ So for, thinking of having all this junk in a file, it grabs the first
 heart rate montior, BT subscribes, and then makes a heartRate and
 batteryLevel publisher.
 
+
+----------
+
+had :alot: of problems trying to use .assign to a @State field of the
+view struct.  Looks like that's not possible (bummer), so made a thunk
+object:
+
+```
+class HeartRateThunk: ObservableObject {
+    private var subscriptions = Set<AnyCancellable>()
+
+    @Published var heartRate: String = "---"
+
+    init(bluetoothAccess: BlueToothAccess? = nil) {
+        guard let bluetoothAccess = bluetoothAccess else {
+            return
+        }
+        bluetoothAccess.heartRatePublisher
+        .receive(on: RunLoop.main)
+        .map {
+            return String($0)
+        }
+        .assign(to: \.heartRate, on: self)
+        .store(in: &subscriptions)
+    }
+}
+```
+
+that's used like
+
+```
+struct ContentView: View {
+    @ObservedObject var thunk: HeartRateThunk = HeartRateThunk()
+
+    @Environment(\.bluetoothAccess) var bluetoothAccess: BlueToothAccess
+
+    init() {
+        thunk = HeartRateThunk(bluetoothAccess: bluetoothAccess)
+    }
+
+    var body: some View {
+        Text(thunk.heartRate).font(.title)
+    }
+}
+```
+
