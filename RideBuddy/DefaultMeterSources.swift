@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import SwiftUI
 
-class DefaultMeters {
+class DefaultMeterSources {
     private var bluetoothAccess: BlueToothAccess!
 
     lazy var heartRateMeterSource : MeterSource = {
@@ -43,11 +43,11 @@ class DefaultMeters {
 
 
 struct DefaultMetersKey: EnvironmentKey {
-    static let defaultValue: DefaultMeters = DefaultMeters(BlueToothAccess())
+    static let defaultValue: DefaultMeterSources = DefaultMeterSources(BlueToothAccess())
 }
 
 extension EnvironmentValues {
-    var defaultMeters: DefaultMeters {
+    var defaultMeters: DefaultMeterSources {
         get {
             return self[DefaultMetersKey.self]
         }
