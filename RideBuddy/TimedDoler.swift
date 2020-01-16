@@ -10,8 +10,18 @@ class TimedDoler {
     var intValues: [Int] = []
     var currentIndex = 0
 
-    func populateIntValues() {
-        intValues = [1, 2, 3, 4, 5, 6]
+    func populateIntValues(_ filename: String) {
+        if let url = Bundle.main.url(forResource: filename, withExtension: "csv") {
+            if let blob = try? String(contentsOf: url) {
+                let lines = blob.split(separator: "\n")
+                for line in lines {
+                    let fields = line.split(separator: ",")
+                    if let intValue = Int(String(fields[0])) {
+                        intValues.append(intValue)
+                    }
+                }
+            }
+        }
     }
 
     static var shared = { TimedDoler(csvName: "sample-rates") }()
@@ -33,7 +43,7 @@ class TimedDoler {
         .autoconnect() // both .autoconnects seem to be necessary
         .eraseToAnyPublisher()
 
-        populateIntValues()
+        populateIntValues(filename)
     }
 
 }
