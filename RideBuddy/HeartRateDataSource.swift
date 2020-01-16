@@ -26,11 +26,23 @@ class HeartRateDataSource: ServiceTypeResolvable {
 
 }
 
+class HeartRateDataSource_Numerical: ServiceTypeResolvable {
+    var dataSource: NumericPublisher
+    
+    required init(resolver: Resolver) {
+        dataSource = bluetoothOrFakePublisher(resolver)
+        .receive(on: RunLoop.main)
+        .eraseToAnyPublisher()
+    }
+}
+
 class HeartRateDataSource2X: ServiceTypeResolvable {
     var dataSource: DataSource
 
     required init(resolver: Resolver) {
-        dataSource = bluetoothOrFakePublisher(resolver)
+        let heartRate = resolver.resolve(HeartRateDataSource_Numerical.self).dataSource
+
+        dataSource = heartRate
         .receive(on: RunLoop.main)
         .map {
             return String(Int($0 * 2))
@@ -54,7 +66,9 @@ class AverageHeartRateDataSource: ServiceTypeResolvable {
     }
 
     required init(resolver: Resolver) {
-        _dataSource = bluetoothOrFakePublisher(resolver)
+        let heartRate = resolver.resolve(HeartRateDataSource_Numerical.self).dataSource
+
+        _dataSource = heartRate
         .receive(on: RunLoop.main)
         .map {
             self.update(with: $0)

@@ -39,6 +39,7 @@ class DefaultMeterSources {
 //        .register(HeartRateDataSource.self, { resolver in
 //                return HeartRateDataSource(withResolver: resolver)
 //            })
+        .register(HeartRateDataSource_Numerical.self)
         .register(HeartRateDataSource.self)
         .register(HeartRateDataSource2X.self)
         .register(AverageHeartRateDataSource.self)
