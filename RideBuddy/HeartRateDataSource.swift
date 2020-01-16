@@ -14,46 +14,33 @@ private func bluetoothOrFakePublisher(_ resolver: Resolver) -> NumericPublisher 
 }
 
 class HeartRateDataSource: ServiceTypeResolvable {
-    var dataSource: DataSource
+    var numericPublisher: NumericPublisher
     
     required init(resolver: Resolver) {
-        dataSource = bluetoothOrFakePublisher(resolver)
-        .receive(on: RunLoop.main)
-        .map {
-            return String(Int($0))
-        }.eraseToAnyPublisher()
-    }
-
-}
-
-class HeartRateDataSource_Numerical: ServiceTypeResolvable {
-    var dataSource: NumericPublisher
-    
-    required init(resolver: Resolver) {
-        dataSource = bluetoothOrFakePublisher(resolver)
+        numericPublisher = bluetoothOrFakePublisher(resolver)
         .receive(on: RunLoop.main)
         .eraseToAnyPublisher()
     }
 }
 
 class HeartRateDataSource2X: ServiceTypeResolvable {
-    var dataSource: DataSource
+    var numericPublisher: NumericPublisher
 
     required init(resolver: Resolver) {
-        let heartRate = resolver.resolve(HeartRateDataSource_Numerical.self).dataSource
+        let heartRate = resolver.resolve(HeartRateDataSource.self).numericPublisher
 
-        dataSource = heartRate
+        numericPublisher = heartRate
         .receive(on: RunLoop.main)
         .map {
-            return String(Int($0 * 2))
+            return Double(Int($0 * 2))
         }.eraseToAnyPublisher()
     }
 }
 
 
 class AverageHeartRateDataSource: ServiceTypeResolvable {
-    var _dataSource: DataSource? = nil
-    var dataSource: DataSource { return _dataSource! }
+    var _numericPublisher: NumericPublisher? = nil
+    var numericPublisher: NumericPublisher { return _numericPublisher! }
 
     var sum = 0.0
     var count = 0
@@ -66,13 +53,13 @@ class AverageHeartRateDataSource: ServiceTypeResolvable {
     }
 
     required init(resolver: Resolver) {
-        let heartRate = resolver.resolve(HeartRateDataSource_Numerical.self).dataSource
+        let heartRate = resolver.resolve(HeartRateDataSource.self).numericPublisher
 
-        _dataSource = heartRate
+        _numericPublisher = heartRate
         .receive(on: RunLoop.main)
         .map {
             self.update(with: $0)
-            return String(format: "%0.1f", self.average)
+            return self.average
         }.eraseToAnyPublisher()
     }
 }

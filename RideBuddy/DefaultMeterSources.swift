@@ -8,13 +8,21 @@ class DefaultMeterSources {
     let sources: Container
 
     lazy var heartRateMeterSource : MeterSource = {
-        MeterSource(name: "Heart Rate",
-            dataSource: sources.resolve(HeartRateDataSource.self).dataSource)
+        let dataSource = sources.resolve(HeartRateDataSource.self).numericPublisher
+        .map {
+            return String(Int($0))
+        }.eraseToAnyPublisher()
+
+        return MeterSource(name: "Heart Rate", dataSource: dataSource)
     }()
 
     lazy var heartRateMeterSource2X : MeterSource = {
-        MeterSource(name: "Heart Rate 2X",
-            dataSource: sources.resolve(HeartRateDataSource2X.self).dataSource)
+        let dataSource = sources.resolve(HeartRateDataSource2X.self).numericPublisher
+        .map {
+            return String(Int($0))
+        }.eraseToAnyPublisher()
+
+        return MeterSource(name: "Heart Rate 2X", dataSource: dataSource)
     }()
 
     lazy var batteryLevelMeterSource : MeterSource = {
@@ -27,8 +35,12 @@ class DefaultMeterSources {
     }()
 
     lazy var averageHeartRateMeterSource: MeterSource = {
-        MeterSource(name: "Avg. HR",
-            dataSource: sources.resolve(AverageHeartRateDataSource.self).dataSource)
+        let dataSource = sources.resolve(AverageHeartRateDataSource.self).numericPublisher
+        .map {
+            return String(format: "%0.1f%%", $0)
+        }.eraseToAnyPublisher()
+
+        return MeterSource(name: "Avg. HR", dataSource: dataSource)
     }()
 
     init(_ bluetoothAccess: BlueToothAccess) {
@@ -39,7 +51,6 @@ class DefaultMeterSources {
 //        .register(HeartRateDataSource.self, { resolver in
 //                return HeartRateDataSource(withResolver: resolver)
 //            })
-        .register(HeartRateDataSource_Numerical.self)
         .register(HeartRateDataSource.self)
         .register(HeartRateDataSource2X.self)
         .register(AverageHeartRateDataSource.self)
