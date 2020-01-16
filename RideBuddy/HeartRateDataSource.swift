@@ -14,10 +14,10 @@ class HeartRateDataSource: ServiceTypeResolvable {
             }.eraseToAnyPublisher()
         
         } else {
-            dataSource = [1, 2, 3, 4].publisher
-            .map {
-                return String($0)
-            }.eraseToAnyPublisher()
+            dataSource = TimedDoler.shared
+            .dataSource
+            .receive(on: RunLoop.main)
+            .eraseToAnyPublisher()
         }
     }
 }
