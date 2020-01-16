@@ -4,8 +4,8 @@ import Foundation
 //  c.f. https://quickbirdstudios.com/blog/swift-dependency-injection-service-locators/
 
 protocol Resolver {
-    // todo remove optional
     func resolve<ServiceType>(_ type: ServiceType.Type) -> ServiceType
+    func maybeResolve<ServiceType>(_ type: ServiceType.Type) -> ServiceType?
 }
 
 protocol ServiceFactory {
@@ -54,6 +54,14 @@ struct Container: Resolver {
         }
         return factory.resolve(self)
     }
+
+    func maybeResolve<ServiceType>(_ type: ServiceType.Type) -> ServiceType? {
+        guard let factory = factories.first(where: { $0.supports(type) }) else {
+            return nil
+        }
+        return factory.resolve(self)
+    }
+
 }
 
 // Type-erased factory thingie

@@ -7,8 +7,12 @@ protocol HeartRateDataSource {
 
 class HeartRateDataSourceImpl: HeartRateDataSource {
     required init(withResolver resolver: Resolver) {
-        let toof = resolver.resolve(BlueToothAccess.self)
-        print("whoa")
+        if let toof = resolver.maybeResolve(BlueToothAccess.self) {
+            print("oop")
+        } else {
+            print("ack")
+        }
+
     }
 }
 
