@@ -538,8 +538,13 @@ multicast, the pipeline never runs without both autoconnects.  TODO look at late
 
 now for an aggregator publisher.  This one for average heart rate.
 
+Along the way did some cleanup so the core publishers aren't stringifying.
 
+----------
 
+Now, for 'current zone'.  For inserting stuff into the dependencies based
+on zones (and updating them)
 
-
+First, just getting in there.  I think adding to the DefaultMeterSources
+initializer and adding to the depedency container.
 
