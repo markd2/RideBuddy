@@ -534,6 +534,10 @@ without the multicast, the individual values were being round-robined amongst
 multiple subscribers (that would have been hard to catch later!). with the
 multicast, the pipeline never runs without both autoconnects.  TODO look at later.
 
+----------
+
+now for an aggregator publisher.  This one for average heart rate.
+
 
 
 

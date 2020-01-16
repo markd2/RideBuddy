@@ -4,8 +4,8 @@ import Combine
 class TimedDoler {
     let timerPublisher = Timer.TimerPublisher(interval: 1.0, runLoop: .main, mode: .default)
 
-    var _dataSource: DataSource? = nil
-    var dataSource: DataSource { return _dataSource! }
+    var _dataSource: IntPublisher? = nil
+    var dataSource: IntPublisher { return _dataSource! }
     
     var intValues: [Int] = []
     var currentIndex = 0
@@ -36,10 +36,7 @@ class TimedDoler {
 
             return value
         }
-        .map { (value: Int) -> String in
-            return String(value)
-        }
-        .multicast { PassthroughSubject<String, Never>() }
+        .multicast { PassthroughSubject<Int, Never>() }
         .autoconnect() // both .autoconnects seem to be necessary
         .eraseToAnyPublisher()
 
