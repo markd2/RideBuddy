@@ -207,7 +207,7 @@ struct RideJournal {
         .receive(on: networkQueue)
         .map(\.data)
         .map { data in
-            let string = String(data: data, encoding: .utf8)
+//            let string = String(data: data, encoding: .utf8)
             return data
         }
         .decode(type: WebRideJournalPayload.self, decoder: decoder)

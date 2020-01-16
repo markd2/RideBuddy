@@ -11,7 +11,13 @@ class Ride {
 
     init() {
         bluetoothAccess = BlueToothAccess()
-        sources = DefaultMeterSources(bluetoothAccess)
+        let heartZones = HeartZones(zone1Boundary: 90,
+            zone2Boundary: 108,
+            zone3Boundary: 125,
+            zone4Boundary: 138,
+            zone5Boundary: 150)
+        sources = DefaultMeterSources(bluetoothAccess,
+                                      heartZones: heartZones)
         sixUp = [sources.heartRateMeterSource,
             sources.averageHeartRateMeterSource,
             sources.heartRateMeterSource2X,

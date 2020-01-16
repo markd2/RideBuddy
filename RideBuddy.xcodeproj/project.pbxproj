@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D7AF1B723D1196900AA2519 /* HeartZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7AF1B623D1196900AA2519 /* HeartZones.swift */; };
 		7D94EBF623CE3FFC00B00E34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EBF523CE3FFC00B00E34 /* AppDelegate.swift */; };
 		7D94EBF823CE3FFC00B00E34 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EBF723CE3FFC00B00E34 /* SceneDelegate.swift */; };
 		7D94EBFA23CE3FFC00B00E34 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EBF923CE3FFC00B00E34 /* ContentView.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D7AF1B623D1196900AA2519 /* HeartZones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartZones.swift; sourceTree = "<group>"; };
 		7D94EBF223CE3FFC00B00E34 /* RideBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RideBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D94EBF523CE3FFC00B00E34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D94EBF723CE3FFC00B00E34 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				7D94EC6123CFCD3300B00E34 /* Ride.swift */,
 				7D94EC6323CFD50300B00E34 /* MeterChooser.swift */,
 				7D94EC6A23D0BBF100B00E34 /* ServiceLocator.swift */,
+				7D7AF1B623D1196900AA2519 /* HeartZones.swift */,
 			);
 			path = RideBuddy;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				7D94EC6223CFCD3300B00E34 /* Ride.swift in Sources */,
 				7D94EC6B23D0BBF100B00E34 /* ServiceLocator.swift in Sources */,
 				7D94EC5A23CFB4D300B00E34 /* Meter.swift in Sources */,
+				7D7AF1B723D1196900AA2519 /* HeartZones.swift in Sources */,
 				7D94EC6423CFD50300B00E34 /* MeterChooser.swift in Sources */,
 				7D94EC6023CFC7CC00B00E34 /* SixUpView.swift in Sources */,
 				7D94EC7023D0E61400B00E34 /* TimedDoler.swift in Sources */,

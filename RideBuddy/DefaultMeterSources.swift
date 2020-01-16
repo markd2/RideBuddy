@@ -43,24 +43,26 @@ class DefaultMeterSources {
         return MeterSource(name: "Avg. HR", dataSource: dataSource)
     }()
 
-    init(_ bluetoothAccess: BlueToothAccess) {
+    init(_ bluetoothAccess: BlueToothAccess,
+        heartZones: HeartZones) {
         self.bluetoothAccess = bluetoothAccess
         
         sources = Container()
+        .register(HeartRateDataSource.self)
+        .register(HeartRateDataSource2X.self)
+        .register(AverageHeartRateDataSource.self)
+        .register(HeartZones.self, instance: heartZones)
+
 //        .register(BlueToothAccess.self, instance: bluetoothAccess)
 //        .register(HeartRateDataSource.self, { resolver in
 //                return HeartRateDataSource(withResolver: resolver)
 //            })
-        .register(HeartRateDataSource.self)
-        .register(HeartRateDataSource2X.self)
-        .register(AverageHeartRateDataSource.self)
-        print("blargle \(sources)")
-        let flonk = sources.resolve(HeartRateDataSource.self)
+
     }
 }
 
 struct DefaultMetersKey: EnvironmentKey {
-    static let defaultValue: DefaultMeterSources = DefaultMeterSources(BlueToothAccess())
+    static let defaultValue: DefaultMeterSources = DefaultMeterSources(BlueToothAccess(), heartZones: HeartZones.zero)
 }
 
 extension EnvironmentValues {
