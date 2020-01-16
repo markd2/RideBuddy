@@ -13,7 +13,7 @@ class Ride {
         bluetoothAccess = BlueToothAccess()
         sources = DefaultMeterSources(bluetoothAccess)
         sixUp = [sources.heartRateMeterSource,
-            sources.heartRateMeterSource,
+            sources.averageHeartRateMeterSource,
             sources.heartRateMeterSource2X,
             sources.heartRateMeterSource2X,
             sources.heartRateMeterSource,

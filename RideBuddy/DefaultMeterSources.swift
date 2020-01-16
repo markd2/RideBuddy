@@ -26,6 +26,11 @@ class DefaultMeterSources {
             }.eraseToAnyPublisher())
     }()
 
+    lazy var averageHeartRateMeterSource: MeterSource = {
+        MeterSource(name: "Avg. HR",
+            dataSource: sources.resolve(AverageHeartRateDataSource.self).dataSource)
+    }()
+
     init(_ bluetoothAccess: BlueToothAccess) {
         self.bluetoothAccess = bluetoothAccess
         
@@ -36,6 +41,7 @@ class DefaultMeterSources {
 //            })
         .register(HeartRateDataSource.self)
         .register(HeartRateDataSource2X.self)
+        .register(AverageHeartRateDataSource.self)
         print("blargle \(sources)")
         let flonk = sources.resolve(HeartRateDataSource.self)
     }
