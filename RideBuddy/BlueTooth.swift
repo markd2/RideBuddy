@@ -10,7 +10,7 @@ class BlueToothAccess: NSObject {
     var centralManager: CBCentralManager?
     var heartRatePeripheral: CBPeripheral!
 
-    let heartRatePublisher = CurrentValueSubject<Int, Never>(0)
+    let heartRatePublisher = CurrentValueSubject<Double, Never>(0)
     let batteryLevelPublisher = CurrentValueSubject<Double, Never>(0)
 
     override init() {
@@ -118,7 +118,7 @@ extension BlueToothAccess: CBPeripheralDelegate {
                 break
             }
             print("lub-dub \(bpm)")
-            heartRatePublisher.send(bpm)
+            heartRatePublisher.send(Double(bpm))
         default:
             print("unhandled uuid \(characteristic.uuid) has value \(characteristic.value?.hexDescription ?? "---")")
 

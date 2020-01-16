@@ -1,13 +1,15 @@
 import Foundation
 import Combine
 
-class TimedDoler {
-    let timerPublisher = Timer.TimerPublisher(interval: 1.0, runLoop: .main, mode: .default)
+let broadcastTime: TimeInterval = 0.5
 
-    var _dataSource: IntPublisher? = nil
-    var dataSource: IntPublisher { return _dataSource! }
+class TimedDoler {
+    let timerPublisher = Timer.TimerPublisher(interval: broadcastTime, runLoop: .main, mode: .default)
+
+    var _dataSource: NumericPublisher? = nil
+    var dataSource: NumericPublisher { return _dataSource! }
     
-    var intValues: [Int] = []
+    var doubleValues: [Double] = []
     var currentIndex = 0
 
     func populateIntValues(_ filename: String) {
@@ -16,8 +18,8 @@ class TimedDoler {
                 let lines = blob.split(separator: "\n")
                 for line in lines {
                     let fields = line.split(separator: ",")
-                    if let intValue = Int(String(fields[0])) {
-                        intValues.append(intValue)
+                    if let doubleValue = Double(String(fields[0])) {
+                        doubleValues.append(doubleValue)
                     }
                 }
             }
@@ -29,14 +31,14 @@ class TimedDoler {
     init(csvName filename: String) {
         _dataSource = timerPublisher
         .autoconnect()
-        .map { (date: Date) -> Int in
-            let value = self.intValues[self.currentIndex]
+        .map { (date: Date) -> Double in
+            let value = self.doubleValues[self.currentIndex]
             self.currentIndex += 1
-            if self.currentIndex >= self.intValues.count { self.currentIndex = 0 }
+            if self.currentIndex >= self.doubleValues.count { self.currentIndex = 0 }
 
             return value
         }
-        .multicast { PassthroughSubject<Int, Never>() }
+        .multicast { PassthroughSubject<Double, Never>() }
         .autoconnect() // both .autoconnects seem to be necessary
         .eraseToAnyPublisher()
 

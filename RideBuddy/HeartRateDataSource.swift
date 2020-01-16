@@ -1,9 +1,9 @@
 import Foundation
 import Combine
 
-typealias IntPublisher = AnyPublisher<Int, Never>
+typealias NumericPublisher = AnyPublisher<Double, Never>
 
-private func bluetoothOrFakePublisher(_ resolver: Resolver) -> IntPublisher {
+private func bluetoothOrFakePublisher(_ resolver: Resolver) -> NumericPublisher {
 
     if let toof = resolver.maybeResolve(BlueToothAccess.self) {
         return toof.heartRatePublisher.eraseToAnyPublisher()
@@ -20,7 +20,7 @@ class HeartRateDataSource: ServiceTypeResolvable {
         dataSource = bluetoothOrFakePublisher(resolver)
         .receive(on: RunLoop.main)
         .map {
-            return String($0)
+            return String(Int($0))
         }.eraseToAnyPublisher()
     }
 
@@ -33,7 +33,7 @@ class HeartRateDataSource2X: ServiceTypeResolvable {
         dataSource = bluetoothOrFakePublisher(resolver)
         .receive(on: RunLoop.main)
         .map {
-            return String($0 * 2)
+            return String(Int($0 * 2))
         }.eraseToAnyPublisher()
     }
 }
@@ -43,14 +43,14 @@ class AverageHeartRateDataSource: ServiceTypeResolvable {
     var _dataSource: DataSource? = nil
     var dataSource: DataSource { return _dataSource! }
 
-    var sum = 0
+    var sum = 0.0
     var count = 0
-    var average: Double = 0.0
+    var average = 0.0
 
-    func update(with value: Int) {
+    func update(with value: Double) {
         sum += value
         count += 1
-        average = Double(sum) / Double(count)
+        average = sum / Double(count)
     }
 
     required init(resolver: Resolver) {
