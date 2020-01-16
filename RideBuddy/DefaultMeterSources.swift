@@ -5,6 +5,8 @@ import SwiftUI
 class DefaultMeterSources {
     private var bluetoothAccess: BlueToothAccess!
 
+    let dependencyContainer: Container
+
     lazy var heartRateMeterSource : MeterSource = {
         MeterSource(name: "Heart Rate",
             dataSource: bluetoothAccess.heartRatePublisher
@@ -34,6 +36,14 @@ class DefaultMeterSources {
 
     init(_ bluetoothAccess: BlueToothAccess) {
         self.bluetoothAccess = bluetoothAccess
+        
+        dependencyContainer = Container()
+        .register(BlueToothAccess.self, instance: bluetoothAccess)
+        .register(HeartRateDataSource.self, { resolver in
+                return HeartRateDataSourceImpl(withResolver: resolver)
+            })
+        print("blargle \(dependencyContainer)")
+        let flonk = dependencyContainer.resolve(HeartRateDataSource.self)
     }
 }
 
