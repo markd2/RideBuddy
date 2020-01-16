@@ -13,7 +13,7 @@ class DefaultMeterSources {
     }()
 
     lazy var heartRateMeterSource2X : MeterSource = {
-        MeterSource(name: "Heart Rate",
+        MeterSource(name: "Heart Rate 2X",
             dataSource: sources.resolve(HeartRateDataSource2X.self).dataSource)
     }()
 
