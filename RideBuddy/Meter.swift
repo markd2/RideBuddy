@@ -2,9 +2,11 @@ import Foundation
 import SwiftUI
 import Combine
 
+typealias DataSource = AnyPublisher<String, Never>
+
 struct MeterSource {
     let name: String
-    let dataSource: AnyPublisher<String, Never>
+    let dataSource: DataSource // String/Never publisher
 }
 
 private class Thunk: ObservableObject {
