@@ -8,6 +8,13 @@ struct ContentView: View {
     var body: some View {
         TabView {
 
+            SixUpView(meterSources: ride.$sixUp, allTheMeters: ride.$allTheMeters).tabItem {
+                VStack {
+                    Text("Six-Up")
+                    Image(systemName: "leaf.arrow.circlepath")
+                }
+            }
+
             LoginView().tabItem {
                 VStack {
                     Text("All Meters")
@@ -15,12 +22,7 @@ struct ContentView: View {
                 }
             }
 
-            SixUpView(meterSources: ride.$sixUp, allTheMeters: ride.$allTheMeters).tabItem {
-                VStack {
-                    Text("Six-Up")
-                    Image(systemName: "leaf.arrow.circlepath")
-                }
-            }
+
         }
     }
 }
