@@ -29,6 +29,7 @@
 		7D94EC6423CFD50300B00E34 /* MeterChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC6323CFD50300B00E34 /* MeterChooser.swift */; };
 		7D94EC6B23D0BBF100B00E34 /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC6A23D0BBF100B00E34 /* ServiceLocator.swift */; };
 		7D94EC6E23D0C4BC00B00E34 /* HeartRateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC6D23D0C4BC00B00E34 /* HeartRateDataSource.swift */; };
+		7D94EC7023D0E61400B00E34 /* TimedDoler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EC6F23D0E61400B00E34 /* TimedDoler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		7D94EC6323CFD50300B00E34 /* MeterChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterChooser.swift; sourceTree = "<group>"; };
 		7D94EC6A23D0BBF100B00E34 /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
 		7D94EC6D23D0C4BC00B00E34 /* HeartRateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateDataSource.swift; sourceTree = "<group>"; };
+		7D94EC6F23D0E61400B00E34 /* TimedDoler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedDoler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				7D94EC6D23D0C4BC00B00E34 /* HeartRateDataSource.swift */,
+				7D94EC6F23D0E61400B00E34 /* TimedDoler.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				7D94EC5A23CFB4D300B00E34 /* Meter.swift in Sources */,
 				7D94EC6423CFD50300B00E34 /* MeterChooser.swift in Sources */,
 				7D94EC6023CFC7CC00B00E34 /* SixUpView.swift in Sources */,
+				7D94EC7023D0E61400B00E34 /* TimedDoler.swift in Sources */,
 				7D94EBF823CE3FFC00B00E34 /* SceneDelegate.swift in Sources */,
 				7D94EC5423CF734D00B00E34 /* DataUtilities.swift in Sources */,
 				7D94EBFA23CE3FFC00B00E34 /* ContentView.swift in Sources */,

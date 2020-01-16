@@ -478,6 +478,62 @@ publish a collection of MeterSources.
 
 yep - that worked out nicely.  DefaultMeters has them for now.
 
+==================================================
+# January 16, 2020
+
+yikes, january is half-over!  eeeeep.
+
+Slept in a bit.
+
+Landed the half-done chizler, wnated to get some data distribution stuff going.
+
+Needing a good way to propoagate publishers around - so things can find 
+publishers and make composite ones.  Trying the dependency container thing
+that squeakytoy found.
+
+https://quickbirdstudios.com/blog/swift-dependency-injection-service-locators/
+
+
+saw this in a so post:
+
+```
+ var body: some View {
+    VStack {
+      Text("\(currentTime)")
+    }
+    .onReceive(timer.currentTimePublisher) { newCurrentTime in
+      self.currentTime = newCurrentTime
+    }
+  }
+```
+
+I needed to do 'autoconnect' twice in the timer doler
+
+```
+    let timerPublisher = Timer.TimerPublisher(interval: 1.0, runLoop: .main, mode: .default)
+
+        _dataSource = timerPublisher
+        .autoconnect()
+        .map { (date: Date) -> Int in
+            let value = self.intValues[self.currentIndex]
+            self.currentIndex += 1
+            if self.currentIndex >= self.intValues.count { self.currentIndex = 0 }
+
+            return value
+        }
+        .map { (value: Int) -> String in
+            return String(value)
+        }
+        .multicast { PassthroughSubject<String, Never>() }
+        .autoconnect() // both .autoconnects seem to be necessary
+        .eraseToAnyPublisher()
+
+```
+
+without the multicast, the individual values were being round-robined amongst
+multiple subscribers (that would have been hard to catch later!). with the
+multicast, the pipeline never runs without both autoconnects.  TODO look at later.
+
 
 
 
