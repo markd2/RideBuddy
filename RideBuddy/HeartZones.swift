@@ -12,4 +12,16 @@ struct HeartZones {
     let zone3Boundary: Int  // T1
     let zone4Boundary: Int
     let zone5Boundary: Int  // T2
+
+    func zoneForHeartRate(_ heartRate: Double) -> Double {
+        let heartRate = Int(heartRate)
+
+        if heartRate >= zone5Boundary { return 5 }
+        if heartRate >= zone4Boundary { return 4 }
+        if heartRate >= zone3Boundary { return 3 }
+        if heartRate >= zone2Boundary { return 2 }
+        if heartRate >= zone1Boundary { return 1 }
+
+        return 0
+    }
 }

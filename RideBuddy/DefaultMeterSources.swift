@@ -37,10 +37,19 @@ class DefaultMeterSources {
     lazy var averageHeartRateMeterSource: MeterSource = {
         let dataSource = sources.resolve(AverageHeartRateDataSource.self).numericPublisher
         .map {
-            return String(format: "%0.1f%%", $0)
+            return String(format: "%0.1f", $0)
         }.eraseToAnyPublisher()
 
         return MeterSource(name: "Avg. HR", dataSource: dataSource)
+    }()
+
+    lazy var currentHeartZoneMeterSource: MeterSource = {
+        let dataSource = sources.resolve(HeartZoneDataSource.self).numericPublisher
+        .map {
+            return String(format: "%0.1f", $0)
+        }.eraseToAnyPublisher()
+
+        return MeterSource(name: "Current Zone", dataSource: dataSource)
     }()
 
     init(_ bluetoothAccess: BlueToothAccess,
@@ -52,6 +61,7 @@ class DefaultMeterSources {
         .register(HeartRateDataSource2X.self)
         .register(AverageHeartRateDataSource.self)
         .register(HeartZones.self, instance: heartZones)
+        .register(HeartZoneDataSource.self)
 
 //        .register(BlueToothAccess.self, instance: bluetoothAccess)
 //        .register(HeartRateDataSource.self, { resolver in

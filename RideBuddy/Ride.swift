@@ -21,7 +21,7 @@ class Ride {
         sixUp = [sources.heartRateMeterSource,
             sources.averageHeartRateMeterSource,
             sources.heartRateMeterSource2X,
-            sources.heartRateMeterSource2X,
+            sources.currentHeartZoneMeterSource,
             sources.heartRateMeterSource,
             sources.batteryLevelMeterSource]
         
