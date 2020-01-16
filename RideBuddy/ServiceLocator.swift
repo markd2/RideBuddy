@@ -23,6 +23,13 @@ protocol ServiceFactory {
 // In the meantime, we need to eliminate the generic type using a type
 //  erased version called AnyServiceFactory.
 
+
+/// Adopt this protocol and then the service locator can instantiate your 
+/// instances and give you the resolver so it can get its dependencies
+protocol ServiceTypeResolvable {
+    init(resolver: Resolver)
+}
+
 struct Container: Resolver {
     let factories: [AnyServiceFactory]
 
@@ -36,6 +43,12 @@ struct Container: Resolver {
 
     func register<T>(_ type: T.Type, instance: T) -> Container {
         return register(type) { _ in instance }
+    }
+
+    func register<ServiceType>(_ type: ServiceType.Type) -> Container where ServiceType: ServiceTypeResolvable {
+        register(type, { resolver in
+                ServiceType(resolver: resolver)
+            })
     }
 
     func register<ServiceType>(_ type: ServiceType.Type, 
