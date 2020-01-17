@@ -45,7 +45,7 @@ struct Container: Resolver {
         return register(type) { _ in instance }
     }
 
-    func register<ServiceType>(_ type: ServiceType.Type) -> Container where ServiceType: ServiceTypeResolvable {
+    func register<ServiceType: ServiceTypeResolvable>(_ type: ServiceType.Type) -> Container  {
         register(type, { resolver in
                 ServiceType(resolver: resolver)
             })
