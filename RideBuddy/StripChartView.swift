@@ -34,8 +34,6 @@ struct StripChartView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            VStack {
-            Text("frame \(geometry.size.width) \(geometry.size.height)")
             ZStack {
                 // will eventually need to make the height proportional to the
                 // height of the zone.
@@ -58,8 +56,7 @@ struct StripChartView: View {
                             height: geometry.size.height * self.zonePercentages[0])
                 }
                 LineChart(values: self.thunk.arrayValue, heartZones: self.heartZones)
-            }
-            }
+            }.clipped()
         }
     }
 }
