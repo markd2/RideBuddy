@@ -31,7 +31,7 @@ struct ContentView: View {
 
             LoginView().tabItem {
                 VStack {
-                    Text("All Meters")
+                    Text("Ride Journal Login")
                     Image(systemName: "desktopcomputer")
                 }
             }
