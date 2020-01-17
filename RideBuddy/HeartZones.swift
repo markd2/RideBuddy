@@ -1,6 +1,10 @@
 import Foundation
+import SwiftUI
 
 struct HeartZones {
+    // make some percentage of the total.
+    let zone5Pad = 15
+
     static var zero = HeartZones(zone1Boundary: 0,
         zone2Boundary: 0,
         zone3Boundary: 0,
@@ -23,7 +27,7 @@ struct HeartZones {
         if heartRate >= zone5Boundary {
             zone = 5
             basis = heartRate - zone5Boundary
-            range = 20
+            range = zone5Pad
         }
         if heartRate >= zone4Boundary {
             zone = 4
@@ -47,11 +51,50 @@ struct HeartZones {
         }
 
         guard zone > 0 else { return 0 }
-
         
         let fraction = Double(basis) / Double(range)
         zone += fraction
 
         return zone
     }
+
+    func minMax() -> (min: Int, max: Int) {
+        return (zone1Boundary, zone5Pad)
+    }
+
+    func ranges() -> [Int] {
+        var ranges: [Int] = []
+        
+        ranges += [zone2Boundary - zone1Boundary]
+        ranges += [zone3Boundary - zone2Boundary]
+        ranges += [zone4Boundary - zone3Boundary]
+        ranges += [zone5Boundary - zone4Boundary]
+        ranges += [zone5Pad]
+
+        return ranges
+    }
+
+    func zonePercentages() -> [Double] {
+        let ranges = self.ranges()
+        let total = Double(ranges.reduce(0, { $0 + $1 }))
+
+        let percentages = ranges.map {
+            Double($0) / total
+        }
+
+        return percentages
+    }
+}
+
+enum HeartZonesColor {
+    static let blueLow = Color(red: 0.0000, green: 0.5430, blue: 0.8240)
+    static let blueHigh = Color(red: 0.0000, green: 0.6520, blue: 0.9920)
+    static let greenLow = Color(red: 0.0000, green: 0.8050, blue: 0.2850)
+    static let greenHigh = Color(red: 0.0000, green: 0.9880, blue: 0.3480)
+    static let yellowLow = Color(red: 0.8125, green: 0.7270, blue: 0.0000)
+    static let yellowHigh = Color(red: 0.9920, green: 0.8870, blue: 0.0000)
+    static let orangeLow = Color(red: 0.8060, green: 0.4570, blue: 0.0000)
+    static let orangeHigh = Color(red: 0.9880, green: 0.5590, blue: 0.0000)
+    static let redLow = Color(red: 0.7460, green: 0.0980, blue: 0.1250)
+    static let redHigh = Color(red: 0.9220, green: 0.1210, blue: 0.1520)
 }

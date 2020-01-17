@@ -7,6 +7,20 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
+            
+            VStack {
+                StripChartView(dataSource: ride.rollingHeartRate,
+                    heartZones: ride.heartZones)
+                HStack {
+                    MeterView(meterSource: ride.sixUp[0])
+                    MeterView(meterSource: ride.sixUp[3])
+                }
+            }.tabItem {
+                VStack {
+                    Text("Chart")
+                    Image(systemName: "tornado")
+                }
+            }
 
             SixUpView(meterSources: ride.$sixUp, allTheMeters: ride.$allTheMeters).tabItem {
                 VStack {
@@ -17,15 +31,14 @@ struct ContentView: View {
 
             LoginView().tabItem {
                 VStack {
-                    Text("All Meters")
+                    Text("Ride Journal Login")
                     Image(systemName: "desktopcomputer")
                 }
             }
-
-
         }
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

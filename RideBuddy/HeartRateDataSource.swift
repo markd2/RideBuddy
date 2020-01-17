@@ -2,6 +2,7 @@ import Foundation
 import Combine
 
 typealias NumericPublisher = AnyPublisher<Double, Never>
+typealias NumericArrayPublisher = AnyPublisher<[Double], Never>
 
 private func bluetoothOrFakePublisher(_ resolver: Resolver) -> NumericPublisher {
 
