@@ -8,7 +8,10 @@ struct ContentView: View {
     var body: some View {
         TabView {
 
-            StripChartView().tabItem {
+            VStack {
+                StripChartView(dataSource: ride.rollingHeartRate)
+                MeterView(meterSource: ride.sixUp[0])
+            }.tabItem {
                 VStack {
                     Text("All Meters")
                     Image(systemName: "tornado")

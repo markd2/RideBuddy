@@ -15,7 +15,7 @@ private class Thunk: ObservableObject {
     var meterSource: MeterSource? = nil
     @Published var stringValue: String = "---"
 
-    init(meterSource: MeterSource? ) {
+    init(meterSource: MeterSource?) {
         guard let meterSource = meterSource else {
             return
         }

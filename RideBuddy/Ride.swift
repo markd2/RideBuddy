@@ -6,6 +6,8 @@ class Ride {
     let sources: DefaultMeterSources
     let bluetoothAccess: BlueToothAccess
 
+    let rollingHeartRate = TimedRollingDoler.shared.dataSource.eraseToAnyPublisher()
+
     @State var sixUp: [MeterSource]
     @State var allTheMeters: [MeterSource]
 
