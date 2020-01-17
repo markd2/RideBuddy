@@ -33,25 +33,40 @@ struct StripChartView: View {
     }
 
     var body: some View {
-        GeometryReader { geometry in
+        let redColors = Gradient(colors: [HeartZonesColor.redHigh, HeartZonesColor.redLow])
+        let redGradient = LinearGradient(gradient: redColors, startPoint: .top, endPoint: .bottom)
+
+        let orangeColors = Gradient(colors: [HeartZonesColor.orangeHigh, HeartZonesColor.orangeLow])
+        let orangeGradient = LinearGradient(gradient: orangeColors, startPoint: .top, endPoint: .bottom)
+
+        let yellowColors = Gradient(colors: [HeartZonesColor.yellowHigh, HeartZonesColor.yellowLow])
+        let yellowGradient = LinearGradient(gradient: yellowColors, startPoint: .top, endPoint: .bottom)
+
+        let greenColors = Gradient(colors: [HeartZonesColor.greenHigh, HeartZonesColor.greenLow])
+        let greenGradient = LinearGradient(gradient: greenColors, startPoint: .top, endPoint: .bottom)
+
+        let blueColors = Gradient(colors: [HeartZonesColor.blueHigh, HeartZonesColor.blueLow])
+        let blueGradient = LinearGradient(gradient: blueColors, startPoint: .top, endPoint: .bottom)
+
+        return GeometryReader { geometry in
             ZStack {
                 // will eventually need to make the height proportional to the
                 // height of the zone.
                 // c.f. https://github.com/markd2/RideBuddy/raw/master/design-docs/assets/2x-graph.png
                 VStack(spacing: 0) {
-                    ZoneSwatch(zoneLabel: "Z5", color: .red, boundary: 150)
+                    ZoneSwatch(zoneLabel: "Z5", color: redGradient, boundary: 150)
                         .frame(width: geometry.size.width,
                             height: geometry.size.height * self.zonePercentages[4])
-                    ZoneSwatch(zoneLabel: "Z4", color: .orange, boundary: 138)
+                    ZoneSwatch(zoneLabel: "Z4", color: orangeGradient, boundary: 138)
                         .frame(width: geometry.size.width,
                             height: geometry.size.height * self.zonePercentages[3])
-                    ZoneSwatch(zoneLabel: "Z3", color: .yellow, boundary: 125)
+                    ZoneSwatch(zoneLabel: "Z3", color: yellowGradient, boundary: 125)
                         .frame(width: geometry.size.width,
                             height: geometry.size.height * self.zonePercentages[2])
-                    ZoneSwatch(zoneLabel: "Z2", color: .green, boundary: 108)
+                    ZoneSwatch(zoneLabel: "Z2", color: greenGradient, boundary: 108)
                         .frame(width: geometry.size.width,
                             height: geometry.size.height * self.zonePercentages[1])
-                    ZoneSwatch(zoneLabel: "Z1", color: .blue, boundary: 90)
+                    ZoneSwatch(zoneLabel: "Z1", color: blueGradient, boundary: 90)
                         .frame(width: geometry.size.width,
                             height: geometry.size.height * self.zonePercentages[0])
                 }
@@ -63,16 +78,16 @@ struct StripChartView: View {
 
 struct ZoneSwatch: View {
     let zoneLabel: String
-    let color: Color
+    let color: LinearGradient
     let boundary: Int
 
     var body: some View {
         ZStack {
             Rectangle().fill(color)
             HStack {
-                Text("\(boundary)").padding(.leading)
+                Text("\(boundary)").bold().padding(.leading)
                 Spacer()
-                Text(zoneLabel).padding(.trailing)
+                Text(zoneLabel).bold().padding(.trailing)
             }.foregroundColor(.white)
         }
     }
@@ -117,7 +132,6 @@ struct LineChart: View {
     var body: some View {
         GeometryReader { geometry in
             Path { path in
-                print("size \(geometry.size)")
                 guard let first = self.values.first else { return }
                 
                 var y = self.transform(heartRate: first,
