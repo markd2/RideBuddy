@@ -30,14 +30,34 @@ struct StripChartView: View {
 
     var body: some View {
         ZStack {
+            // will eventually need to make the height proportional to the
+            // height of the zone.
+            // c.f. https://github.com/markd2/RideBuddy/raw/master/design-docs/assets/2x-graph.png
             VStack(spacing: 0) {
-                Rectangle().fill(Color.red)
-                Rectangle().fill(Color.orange)
-                Rectangle().fill(Color.yellow)
-                Rectangle().fill(Color.green)
-                Rectangle().fill(Color.blue)
+                ZoneSwatch(zoneLabel: "Z5", color: .red, boundary: 150)
+                ZoneSwatch(zoneLabel: "Z4", color: .orange, boundary: 138)
+                ZoneSwatch(zoneLabel: "Z3", color: .yellow, boundary: 125)
+                ZoneSwatch(zoneLabel: "Z2", color: .green, boundary: 108)
+                ZoneSwatch(zoneLabel: "Z1", color: .blue, boundary: 90)
             }
             LineChart(values: thunk.arrayValue)
+        }
+    }
+}
+
+struct ZoneSwatch: View {
+    let zoneLabel: String
+    let color: Color
+    let boundary: Int
+
+    var body: some View {
+        ZStack {
+            Rectangle().fill(color)
+            HStack {
+                Text("\(boundary)").padding(.leading)
+                Spacer()
+                Text(zoneLabel).padding(.trailing)
+            }.foregroundColor(.white)
         }
     }
 }
