@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D7AF1B723D1196900AA2519 /* HeartZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7AF1B623D1196900AA2519 /* HeartZones.swift */; };
 		7D7AF1B923D11DBC00AA2519 /* ZoneDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7AF1B823D11DBC00AA2519 /* ZoneDataSource.swift */; };
+		7D7AF1DB23D2136500AA2519 /* StripChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7AF1DA23D2136500AA2519 /* StripChartView.swift */; };
 		7D94EBF623CE3FFC00B00E34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EBF523CE3FFC00B00E34 /* AppDelegate.swift */; };
 		7D94EBF823CE3FFC00B00E34 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EBF723CE3FFC00B00E34 /* SceneDelegate.swift */; };
 		7D94EBFA23CE3FFC00B00E34 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EBF923CE3FFC00B00E34 /* ContentView.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		7D7AF1B623D1196900AA2519 /* HeartZones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartZones.swift; sourceTree = "<group>"; };
 		7D7AF1B823D11DBC00AA2519 /* ZoneDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneDataSource.swift; sourceTree = "<group>"; };
+		7D7AF1DA23D2136500AA2519 /* StripChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripChartView.swift; sourceTree = "<group>"; };
 		7D94EBF223CE3FFC00B00E34 /* RideBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RideBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D94EBF523CE3FFC00B00E34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D94EBF723CE3FFC00B00E34 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				7D94EC6323CFD50300B00E34 /* MeterChooser.swift */,
 				7D94EC6A23D0BBF100B00E34 /* ServiceLocator.swift */,
 				7D7AF1B623D1196900AA2519 /* HeartZones.swift */,
+				7D7AF1DA23D2136500AA2519 /* StripChartView.swift */,
 			);
 			path = RideBuddy;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			files = (
 				7D94EC1C23CE6E5A00B00E34 /* DateUtilities.swift in Sources */,
 				7D94EBF623CE3FFC00B00E34 /* AppDelegate.swift in Sources */,
+				7D7AF1DB23D2136500AA2519 /* StripChartView.swift in Sources */,
 				7D94EC5E23CFC0F200B00E34 /* Utilities.swift in Sources */,
 				7D94EC4F23CF70BA00B00E34 /* BlueTooth.swift in Sources */,
 				7D94EC5C23CFBDDB00B00E34 /* DefaultMeterSources.swift in Sources */,
