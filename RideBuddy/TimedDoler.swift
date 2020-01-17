@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-let broadcastTime: TimeInterval = 0.25
+let broadcastTime: TimeInterval = 0.5
 
 class TimedDoler {
     let timerPublisher = Timer.TimerPublisher(interval: broadcastTime, runLoop: .main, mode: .default)
