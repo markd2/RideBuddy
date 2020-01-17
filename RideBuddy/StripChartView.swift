@@ -27,20 +27,36 @@ struct StripChartView: View {
         self.dataSource = dataSource
         thunk = Thunk(dataSource: dataSource)
     }
+    let swatchPercentages: [CGFloat] = [0.2, 0.1, 0.3, 0.25, 0.15]
 
     var body: some View {
-        ZStack {
-            // will eventually need to make the height proportional to the
-            // height of the zone.
-            // c.f. https://github.com/markd2/RideBuddy/raw/master/design-docs/assets/2x-graph.png
-            VStack(spacing: 0) {
-                ZoneSwatch(zoneLabel: "Z5", color: .red, boundary: 150)
-                ZoneSwatch(zoneLabel: "Z4", color: .orange, boundary: 138)
-                ZoneSwatch(zoneLabel: "Z3", color: .yellow, boundary: 125)
-                ZoneSwatch(zoneLabel: "Z2", color: .green, boundary: 108)
-                ZoneSwatch(zoneLabel: "Z1", color: .blue, boundary: 90)
+        GeometryReader { geometry in
+            VStack {
+            Text("frame \(geometry.size.width) \(geometry.size.height)")
+            ZStack {
+                // will eventually need to make the height proportional to the
+                // height of the zone.
+                // c.f. https://github.com/markd2/RideBuddy/raw/master/design-docs/assets/2x-graph.png
+                VStack(spacing: 0) {
+                    ZoneSwatch(zoneLabel: "Z5", color: .red, boundary: 150)
+                        .frame(width: geometry.size.width,
+                            height: geometry.size.height * self.swatchPercentages[4])
+                    ZoneSwatch(zoneLabel: "Z4", color: .orange, boundary: 138)
+                        .frame(width: geometry.size.width,
+                            height: geometry.size.height * self.swatchPercentages[3])
+                    ZoneSwatch(zoneLabel: "Z3", color: .yellow, boundary: 125)
+                        .frame(width: geometry.size.width,
+                            height: geometry.size.height * self.swatchPercentages[2])
+                    ZoneSwatch(zoneLabel: "Z2", color: .green, boundary: 108)
+                        .frame(width: geometry.size.width,
+                            height: geometry.size.height * self.swatchPercentages[1])
+                    ZoneSwatch(zoneLabel: "Z1", color: .blue, boundary: 90)
+                        .frame(width: geometry.size.width,
+                            height: geometry.size.height * self.swatchPercentages[0])
+                }
+                LineChart(values: self.thunk.arrayValue)
             }
-            LineChart(values: thunk.arrayValue)
+            }
         }
     }
 }
