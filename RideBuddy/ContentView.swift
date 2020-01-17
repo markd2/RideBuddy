@@ -11,7 +11,10 @@ struct ContentView: View {
             VStack {
                 StripChartView(dataSource: ride.rollingHeartRate,
                     heartZones: ride.heartZones)
-                MeterView(meterSource: ride.sixUp[0])
+                HStack {
+                    MeterView(meterSource: ride.sixUp[0])
+                    MeterView(meterSource: ride.sixUp[3])
+                }
             }.tabItem {
                 VStack {
                     Text("Chart")
