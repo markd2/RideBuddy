@@ -83,8 +83,12 @@ class TimedRollingDoler {
 
             let value = self.doubleValues[self.currentIndex]
             self.currentIndex += 1
+            
+            if self.currentIndex >= self.doubleValues.count {
+                self.currentIndex = 0
+            }
 
-            if self.window.count > self.windowSize {
+            if self.window.count >= self.windowSize {
                 self.window.removeLast(self.window.count - self.windowSize)
             }
             if self.window.count > 0 && self.window.count == self.windowSize {
