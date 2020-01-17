@@ -57,6 +57,10 @@ struct HeartZones {
         return zone
     }
 
+    func minMax() -> (min: Int, max: Int) {
+        return (zone1Boundary, zone5Pad)
+    }
+
     func ranges() -> [Int] {
         var ranges: [Int] = []
         

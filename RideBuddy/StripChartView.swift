@@ -91,18 +91,51 @@ struct LineChart: View {
         self.heartZones = heartZones
     }
 
+    func transform(heartRate: Double, height: CGFloat, frame: CGRect) -> CGFloat {
+        // I have a heart rate.
+        // the line chart has a height to show all heart rates. Say 1000 points
+        // there's a range of visible heart rates, defined by heartZones.minMax
+        // say (90 .. 190) = 100.
+        // therefore each heart rate increment is 1000 / 100, or 10 points.
+        //
+        // bias the heart rate by the min.  So if 90 comes in, it becomes zero,
+        // if 95 comes in, 95 - min -> 95 - 90 -> becomes 5.
+        // These can be negative
+        //
+        // to get the pixel offset, that's 5 * 10, so HR of 95 is 50 points from
+        // the bottom.
+
+        let (min, max) = heartZones.minMax()
+        let range = CGFloat(max - min)
+        let incrementPoints = height / range
+
+        let biasedHeartRate = CGFloat(heartRate - Double(min))
+        let pixelOffset = incrementPoints * biasedHeartRate
+
+        let y = frame.maxY + pixelOffset
+
+        return y
+    }
+
     var body: some View {
-        Path { path in
-            guard let first = values.first else { return }
-
-            var y: CGFloat = CGFloat(first)
-            path.move(to: CGPoint(x: CGFloat(0), y: y * 2))
-
-            for i in 1..<values.count {
-                y = CGFloat(values[i])
-                path.addLine(to: CGPoint(x: CGFloat(2 + i * 5), y: y * 2))
+        GeometryReader { geometry in
+            Path { path in
+                print("size \(geometry.size)")
+                guard let first = self.values.first else { return }
+                
+                var y = self.transform(heartRate: first,
+                    height: geometry.size.height,
+                    frame: geometry.frame(in: .local))
+                path.move(to: CGPoint(x: CGFloat(0), y: y))
+                
+                for i in 1 ..< self.values.count {
+                    y = self.transform(heartRate: self.values[i],
+                        height: geometry.size.height,
+                        frame: geometry.frame(in: .local))
+                    path.addLine(to: CGPoint(x: CGFloat(2 + i * 5), y: y))
+                }
             }
+            .stroke(Color.black, lineWidth: 3)
         }
-        .stroke(Color.black, lineWidth: 3)
     }
 }
