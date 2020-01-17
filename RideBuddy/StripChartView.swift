@@ -22,12 +22,15 @@ private class Thunk: ObservableObject {
 struct StripChartView: View {
     @ObservedObject fileprivate var thunk = Thunk(dataSource: nil)
     let dataSource: NumericArrayPublisher
+    let heartZones: HeartZones
+    let zonePercentages: [CGFloat]
 
-    init(dataSource: NumericArrayPublisher) {
+    init(dataSource: NumericArrayPublisher, heartZones: HeartZones) {
         self.dataSource = dataSource
+        self.heartZones = heartZones
+        zonePercentages = heartZones.zonePercentages().map { CGFloat($0) }
         thunk = Thunk(dataSource: dataSource)
     }
-    let swatchPercentages: [CGFloat] = [0.2, 0.1, 0.3, 0.25, 0.15]
 
     var body: some View {
         GeometryReader { geometry in
@@ -40,21 +43,21 @@ struct StripChartView: View {
                 VStack(spacing: 0) {
                     ZoneSwatch(zoneLabel: "Z5", color: .red, boundary: 150)
                         .frame(width: geometry.size.width,
-                            height: geometry.size.height * self.swatchPercentages[4])
+                            height: geometry.size.height * self.zonePercentages[4])
                     ZoneSwatch(zoneLabel: "Z4", color: .orange, boundary: 138)
                         .frame(width: geometry.size.width,
-                            height: geometry.size.height * self.swatchPercentages[3])
+                            height: geometry.size.height * self.zonePercentages[3])
                     ZoneSwatch(zoneLabel: "Z3", color: .yellow, boundary: 125)
                         .frame(width: geometry.size.width,
-                            height: geometry.size.height * self.swatchPercentages[2])
+                            height: geometry.size.height * self.zonePercentages[2])
                     ZoneSwatch(zoneLabel: "Z2", color: .green, boundary: 108)
                         .frame(width: geometry.size.width,
-                            height: geometry.size.height * self.swatchPercentages[1])
+                            height: geometry.size.height * self.zonePercentages[1])
                     ZoneSwatch(zoneLabel: "Z1", color: .blue, boundary: 90)
                         .frame(width: geometry.size.width,
-                            height: geometry.size.height * self.swatchPercentages[0])
+                            height: geometry.size.height * self.zonePercentages[0])
                 }
-                LineChart(values: self.thunk.arrayValue)
+                LineChart(values: self.thunk.arrayValue, heartZones: self.heartZones)
             }
             }
         }
@@ -81,9 +84,11 @@ struct ZoneSwatch: View {
 struct LineChart: View {
 
     let values: [Double]
+    let heartZones: HeartZones
     
-    init(values: [Double]) {
+    init(values: [Double], heartZones: HeartZones) {
         self.values = values
+        self.heartZones = heartZones
     }
 
     var body: some View {

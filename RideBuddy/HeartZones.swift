@@ -1,6 +1,9 @@
 import Foundation
 
 struct HeartZones {
+    // make some percentage of the total.
+    let zone5Pad = 15
+
     static var zero = HeartZones(zone1Boundary: 0,
         zone2Boundary: 0,
         zone3Boundary: 0,
@@ -23,7 +26,7 @@ struct HeartZones {
         if heartRate >= zone5Boundary {
             zone = 5
             basis = heartRate - zone5Boundary
-            range = 20
+            range = zone5Pad
         }
         if heartRate >= zone4Boundary {
             zone = 4
@@ -47,11 +50,34 @@ struct HeartZones {
         }
 
         guard zone > 0 else { return 0 }
-
         
         let fraction = Double(basis) / Double(range)
         zone += fraction
 
         return zone
+    }
+
+    func ranges() -> [Int] {
+        var ranges: [Int] = []
+        
+        ranges += [zone2Boundary - zone1Boundary]
+        ranges += [zone3Boundary - zone2Boundary]
+        ranges += [zone4Boundary - zone3Boundary]
+        ranges += [zone5Boundary - zone4Boundary]
+        ranges += [zone5Pad]
+
+        return ranges
+    }
+
+    func zonePercentages() -> [Double] {
+        let ranges = self.ranges()
+        let total = Double(ranges.reduce(0, { $0 + $1 }))
+
+        let percentages = ranges.map {
+            Double($0) / total
+        }
+
+        return percentages
+
     }
 }

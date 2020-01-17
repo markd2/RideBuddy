@@ -9,7 +9,8 @@ struct ContentView: View {
         TabView {
             
             VStack {
-                StripChartView(dataSource: ride.rollingHeartRate)
+                StripChartView(dataSource: ride.rollingHeartRate,
+                    heartZones: ride.heartZones)
                 MeterView(meterSource: ride.sixUp[0])
             }.tabItem {
                 VStack {
