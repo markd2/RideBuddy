@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 struct HeartZones {
     // make some percentage of the total.
@@ -82,6 +83,18 @@ struct HeartZones {
         }
 
         return percentages
-
     }
+}
+
+enum HeartZonesColor {
+    static let blueLow = Color(red: 0.0000, green: 0.5430, blue: 0.8240)
+    static let blueHigh = Color(red: 0.0000, green: 0.6520, blue: 0.9920)
+    static let greenLow = Color(red: 0.0000, green: 0.8050, blue: 0.2850)
+    static let greenHigh = Color(red: 0.0000, green: 0.9880, blue: 0.3480)
+    static let yellowLow = Color(red: 0.8125, green: 0.7270, blue: 0.0000)
+    static let yellowHigh = Color(red: 0.9920, green: 0.8870, blue: 0.0000)
+    static let orangeLow = Color(red: 0.8060, green: 0.4570, blue: 0.0000)
+    static let orangeHigh = Color(red: 0.9880, green: 0.5590, blue: 0.0000)
+    static let redLow = Color(red: 0.7460, green: 0.0980, blue: 0.1250)
+    static let redHigh = Color(red: 0.9220, green: 0.1210, blue: 0.1520)
 }
