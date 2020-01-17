@@ -7,13 +7,13 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-
+            
             VStack {
                 StripChartView(dataSource: ride.rollingHeartRate)
                 MeterView(meterSource: ride.sixUp[0])
             }.tabItem {
                 VStack {
-                    Text("All Meters")
+                    Text("Chart")
                     Image(systemName: "tornado")
                 }
             }
@@ -31,11 +31,10 @@ struct ContentView: View {
                     Image(systemName: "desktopcomputer")
                 }
             }
-
-
         }
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
