@@ -548,3 +548,85 @@ on zones (and updating them)
 First, just getting in there.  I think adding to the DefaultMeterSources
 initializer and adding to the depedency container.
 
+
+==================================================
+# Friday January 17, 2020
+
+last day :-(
+
+watched first half of #237 on swift ui custom views and layout.  really neat.
+
+Got most of the strip-chart operational with smoke and mirrors. still need to
+scale the chart line.
+
+guess I need to learn up on geometry reader.
+
+"defines its content as a functiino of its own size and coordinate space"
+
+"returns a flexible preferred size to its parent layout"
+
+https://swiftui-lab.com/geometryreader-to-the-rescue/
+
+```
+            VStack {
+                Text("SNORGLE")
+                BlahView()
+            }.frame(width: 150, height: 100).border(Color.black)
+```
+
+
+GeometryReader -> _ShapeView -> ResolvedShapeView
+
+This draws to the right of the actual view
+
+
+```
+struct MyRectangle: View {
+    var body: some View {
+        GeometryReader { geometry in
+            Rectangle()
+                .path(in: CGRect(x: geometry.size.width + 5,
+                                 y: 0,
+                                 width: geometry.size.width / 2.0,
+                                 height: geometry.size.height / 2.0))
+                .fill(Color.blue)
+            
+        }
+    }
+}```
+
+----------
+
+yay, it all works with the geometry reader.
+
+Now to see how to clip.  easy!  .clipped or something like that.
+
+now for color gradient
+
+from bucketS:
+
+```
+    UIColor *blueLow = [self colorWithFractions: 0.0000, 0.5430, 0.8240, 1.0];
+    UIColor *blueHigh = [self colorWithFractions: 0.0000, 0.6520, 0.9920, 1.0];
+    UIColor *greenLow = [self colorWithFractions: 0.0000, 0.8050, 0.2850, 1.0];
+    UIColor *greenHigh = [self colorWithFractions: 0.0000, 0.9880, 0.3480, 1.0];
+    UIColor *yellowLow = [self colorWithFractions: 0.8125, 0.7270, 0.0000, 1.0];
+    UIColor *yellowHigh = [self colorWithFractions: 0.9920, 0.8870, 0.0000, 1.0];
+    UIColor *orangeLow = [self colorWithFractions: 0.8060, 0.4570, 0.0000, 1.0];
+    UIColor *orangeHigh = [self colorWithFractions: 0.9880, 0.5590, 0.0000, 1.0];
+    UIColor *redLow = [self colorWithFractions: 0.7460, 0.0980, 0.1250, 1.0];
+    UIColor *redHigh = [self colorWithFractions: 0.9220, 0.1210, 0.1520, 1.0];
+```
+
+and transformed
+
+let blueLow = Color(red: 0.0000, green: 0.5430, blue: 0.8240)
+let blueHigh = Color(red: 0.0000, green: 0.6520, blue: 0.9920)
+let greenLow = Color(red: 0.0000, green: 0.8050, blue: 0.2850)
+let greenHigh = Color(red: 0.0000, green: 0.9880, blue: 0.3480)
+let yellowLow = Color(red: 0.8125, green: 0.7270, blue: 0.0000)
+let yellowHigh = Color(red: 0.9920, green: 0.8870, blue: 0.0000)
+let orangeLow = Color(red: 0.8060, green: 0.4570, blue: 0.0000)
+let orangeHigh = Color(red: 0.9880, green: 0.5590, blue: 0.0000)
+let redLow = Color(red: 0.7460, green: 0.0980, blue: 0.1250)
+let redHigh = Color(red: 0.9220, green: 0.1210, blue: 0.1520)
