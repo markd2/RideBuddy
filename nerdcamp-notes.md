@@ -66,9 +66,10 @@ Specifically I got done:
 
 * A custom view which shows the user's heart rate along with some history, with the different heart zones colored with the same gradients as the original software.
 
-|-------|--------|
-| ![Login and initial user data fetch sequence with bad password.](assets/login-handling-bad-password.png) | ![Page with six meters on it. All but the battery percentage are live in non-bluetooth land. In bluetooth land, they're all active](assets/six-up-meters.png) |
-|  ![Chooser for the known meters](assets/meter-chooser.png) | ![Strip-chart of current and recent heart rate history](assets/chart.png) |
+thing1 | thing2
+-------|--------
+![Login and initial user data fetch sequence with bad password.](assets/login-handling-bad-password.png) | ![Page with six meters on it. All but the battery percentage are live in non-bluetooth land. In bluetooth land, they're all active](assets/six-up-meters.png)
+![Chooser for the known meters](assets/meter-chooser.png) | ![Strip-chart of current and recent heart rate history](assets/chart.png)
 
 
 ### Next steps
@@ -155,3 +156,4 @@ The current app internally is a mess - the codebase started before the iPad was 
 
 Re-doing RideBuddy has been on my wish-list for a long time, and since I'm going to be starting a 12-week Winter Training course next week, having an app I will be using will encourage me to stick with SwiftUI and Combine and bring this app up to date.
 
+b
