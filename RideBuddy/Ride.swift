@@ -31,7 +31,9 @@ class Ride {
         
         allTheMeters = [sources.heartRateMeterSource,
             sources.heartRateMeterSource2X,
-            sources.batteryLevelMeterSource]
+            sources.batteryLevelMeterSource,
+            sources.averageHeartRateMeterSource,
+            sources.currentHeartZoneMeterSource]
     }
 }
 
