@@ -630,3 +630,14 @@ let orangeLow = Color(red: 0.8060, green: 0.4570, blue: 0.0000)
 let orangeHigh = Color(red: 0.9880, green: 0.5590, blue: 0.0000)
 let redLow = Color(red: 0.7460, green: 0.0980, blue: 0.1250)
 let redHigh = Color(red: 0.9220, green: 0.1210, blue: 0.1520)
+
+----------
+
+Made fork into the BNR repo at https://github.com/bignerdranch/BNR-MarkD-RideBuddy,
+everyone added as write privilege, because why not.
+
+----------
+
+5:45 on friday.  Time to pay the bills and write up the post-mortem.
+
+c.f. nerdcamp-notes.md
