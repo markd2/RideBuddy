@@ -50,9 +50,6 @@ struct StripChartView: View {
 
         return GeometryReader { geometry in
             ZStack {
-                // will eventually need to make the height proportional to the
-                // height of the zone.
-                // c.f. https://github.com/markd2/RideBuddy/raw/master/design-docs/assets/2x-graph.png
                 VStack(spacing: 0) {
                     ZoneSwatch(zoneLabel: "Z5", color: redGradient, boundary: 150)
                         .frame(width: geometry.size.width,
