@@ -169,13 +169,13 @@ struct RideJournal {
 
     private let decoder = JSONDecoder()
 
-    func loginPayload() -> Data? {
+    func loginPayload(username: String, password: String) -> Data? {
         let loginJSON =
         """
         {
             "user": {
-                "password": "iwuvumikey",
-                "userName": "markd"
+                "password": "\(password)",
+                "userName": "\(username)"
             }
         }
         """
@@ -186,7 +186,7 @@ struct RideJournal {
     func login(username: String,
         password: String) -> AnyPublisher<RideJournalPayload, Error> {
 
-        guard let payload = loginPayload() else {
+        guard let payload = loginPayload(username: username, password: password) else {
             fatalError("do something reasonable here")
         }
 
